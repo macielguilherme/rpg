@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personagens — Caçador Solitário</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Pixelify+Sans:wght@400;600;700&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/personagens.css">
+</head>
+
+<body class="pagina-personagens">
+
+    <!-- ============================================================
+     HEADER
+     ============================================================ -->
+    <header class="main-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark">火</span>
+                <span>Caçador Solitário</span>
+            </a>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="personagens.html">Personagens</a></li>
+                    <li><a href="historia.html">História</a></li>
+                    <li><a href="mapa.html">Mapa</a></li>
+                    <li><a href="ficha.html">Ficha</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================================
+     CONTEÚDO
+     ============================================================ -->
+    <main class="page-personagens">
+        <div class="container">
+
+            <!-- Hero -->
+            <div class="page-hero">
+                <span class="eyebrow">Bestiário</span>
+                <h1 class="page-title">Personagens</h1>
+                <p class="page-subtitle">
+                    Os Sete Pilares e as Luas Inferiores. Conheça cada um,
+                    suas histórias, habilidades e segredos.
+                </p>
+            </div>
+
+            <!-- Abas -->
+            <nav class="tabs" role="tablist">
+                <button class="tab active" data-tipo="hashira" role="tab" type="button">
+                    Hashiras
+                </button>
+                <button class="tab" data-tipo="oni" role="tab" type="button">
+                    Onis
+                </button>
+            </nav>
+
+            <!-- Grid de cards -->
+            <section class="characters-grid" id="charactersGrid">
+                <!-- Cards entram aqui via JS -->
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ============================================================
+     MODAL DE PERSONAGEM
+     ============================================================ -->
+    <div class="modal-overlay" id="characterModal" aria-hidden="true">
+        <div class="modal-box">
+
+            <button class="modal-close" id="modalClose" type="button" aria-label="Fechar">✕</button>
+
+            <div class="character-modal">
+
+                <!-- Coluna esquerda: imagem -->
+                <div class="character-modal__media">
+                    <img id="modalImage" src="" alt="" class="character-modal__image">
+                    <span class="badge badge-gold" id="modalBadge">Hashira</span>
+                </div>
+
+                <!-- Coluna direita: info -->
+                <div class="character-modal__info">
+
+                    <h2 class="character-modal__name" id="modalName">—</h2>
+                    <p class="character-modal__role" id="modalRole">—</p>
+
+                    <!-- Stats em barras -->
+                    <div class="character-modal__stats">
+                        <div class="stat">
+                            <span class="stat__abbr">FOR</span>
+                            <div class="stat__bar">
+                                <div class="stat__fill" id="statFor" style="width:0%"></div>
+                            </div>
+                            <span class="stat__value" id="statForValue">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__abbr">AGI</span>
+                            <div class="stat__bar">
+                                <div class="stat__fill" id="statAgi" style="width:0%"></div>
+                            </div>
+                            <span class="stat__value" id="statAgiValue">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__abbr">INT</span>
+                            <div class="stat__bar">
+                                <div class="stat__fill" id="statInt" style="width:0%"></div>
+                            </div>
+                            <span class="stat__value" id="statIntValue">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__abbr">VIT</span>
+                            <div class="stat__bar">
+                                <div class="stat__fill" id="statVit" style="width:0%"></div>
+                            </div>
+                            <span class="stat__value" id="statVitValue">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Descrição -->
+                    <div class="character-modal__section">
+                        <h4>Descrição</h4>
+                        <p id="modalDescription">—</p>
+                    </div>
+
+                    <!-- História -->
+                    <div class="character-modal__section">
+                        <h4>História</h4>
+                        <p id="modalHistory">—</p>
+                    </div>
+
+                    <!-- Habilidades -->
+                    <div class="character-modal__section">
+                        <h4>Habilidades</h4>
+                        <ul class="character-modal__abilities" id="modalAbilities">
+                            <!-- Itens entram via JS -->
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================================
+     TOAST
+     ============================================================ -->
+    <div class="toast" id="toast" hidden>
+        <span class="toast-text"></span>
+    </div>
+
+    <script src="data/personagens.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/personagens.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <!-- Fundo em gradiente vertical: carvão → preto -->
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a0505"/>
+      <stop offset="0.5" stop-color="#120303"/>
+      <stop offset="1" stop-color="#0a0202"/>
+    </linearGradient>
+
+    <!-- Lâmina: vermelho claro no topo → vermelho sangue na base -->
+    <linearGradient id="blade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff8a8a"/>
+      <stop offset="0.4" stop-color="#f05a5f"/>
+      <stop offset="1" stop-color="#8B0000"/>
+    </linearGradient>
+
+    <!-- Guarda (tsuba): dourado com brilho -->
+    <linearGradient id="guard" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8a7340"/>
+      <stop offset="0.5" stop-color="#e0b65a"/>
+      <stop offset="1" stop-color="#8a7340"/>
+    </linearGradient>
+
+    <!-- Cabo (tsuka): preto com detalhe -->
+    <linearGradient id="grip" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1f0e0e"/>
+      <stop offset="0.5" stop-color="#3a1a1a"/>
+      <stop offset="1" stop-color="#1f0e0e"/>
+    </linearGradient>
+
+    <!-- Brilho da lâmina (highlight lateral) -->
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Respingo -->
+    <radialGradient id="splat" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#f05a5f" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#8B0000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Fundo -->
+  <rect width="64" height="64" rx="10" fill="url(#bg)" stroke="#B22222" stroke-width="2"/>
+
+  <!-- Grade sutil de pixels (textura) -->
+  <g opacity="0.06" fill="#ffffff">
+    <rect x="8" y="8" width="1" height="1"/>
+    <rect x="20" y="14" width="1" height="1"/>
+    <rect x="44" y="10" width="1" height="1"/>
+    <rect x="52" y="22" width="1" height="1"/>
+    <rect x="14" y="40" width="1" height="1"/>
+    <rect x="48" y="44" width="1" height="1"/>
+    <rect x="30" y="54" width="1" height="1"/>
+  </g>
+
+  <!-- Respingos de sangue (atrás da katana) -->
+  <circle cx="18" cy="18" r="6" fill="url(#splat)"/>
+  <circle cx="48" cy="14" r="4" fill="url(#splat)"/>
+  <circle cx="50" cy="46" r="5" fill="url(#splat)"/>
+
+  <!-- Katana (vertical, lâmina pra cima) -->
+  <g>
+    <!-- Cabo (tsuka) - parte de baixo -->
+    <rect x="29" y="46" width="6" height="12" fill="url(#grip)" stroke="#0a0202" stroke-width="0.5"/>
+    <!-- Detalhe do cabo (enrolamento) -->
+    <line x1="29" y1="49" x2="35" y2="49" stroke="#0a0202" stroke-width="0.5"/>
+    <line x1="29" y1="52" x2="35" y2="52" stroke="#0a0202" stroke-width="0.5"/>
+    <line x1="29" y1="55" x2="35" y2="55" stroke="#0a0202" stroke-width="0.5"/>
+
+    <!-- Guarda (tsuba) - losango dourado -->
+    <rect x="25" y="43" width="14" height="4" fill="url(#guard)" stroke="#5a4a20" stroke-width="0.5"/>
+    <circle cx="32" cy="45" r="1" fill="#0a0202"/>
+
+    <!-- Lâmina (principal) -->
+    <path d="M32 4 L35.5 42 L32 43 L28.5 42 Z" fill="url(#blade)" stroke="#5c0000" stroke-width="0.5"/>
+
+    <!-- Brilho da lâmina (linha vertical clara) -->
+    <path d="M31 6 L31.8 41 L31 41.5 Z" fill="url(#shine)"/>
+
+    <!-- Ponta da lâmina (kissaki) - mais clara -->
+    <path d="M32 4 L33.5 10 L32 11 L30.5 10 Z" fill="#ffb0b0" opacity="0.9"/>
+
+    <!-- Fio de sangue escorrendo -->
+    <path d="M33.5 20 Q34 26 33 32" stroke="#8B0000" stroke-width="0.8" fill="none" opacity="0.8"/>
+  </g>
+
+  <!-- Partículas flutuantes (brilho vermelho) -->
+  <circle cx="22" cy="32" r="1.2" fill="#f05a5f" opacity="0.7"/>
+  <circle cx="44" cy="28" r="1" fill="#f05a5f" opacity="0.5"/>
+  <circle cx="18" cy="50" r="1" fill="#f05a5f" opacity="0.4"/>
+  <circle cx="48" cy="52" r="0.8" fill="#e0b65a" opacity="0.6"/>
+</svg>

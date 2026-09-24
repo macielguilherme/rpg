@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa — Caçador Solitário</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Pixelify+Sans:wght@400;600;700&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+
+    <!-- Leaflet API CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/mapa.css">
+</head>
+
+<body class="pagina-mapa">
+
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark">火</span>
+                <span>Caçador Solitário</span>
+            </a>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="personagens.html">Personagens</a></li>
+                    <li><a href="historia.html">História</a></li>
+                    <li><a href="mapa.html" class="active">Mapa</a></li>
+                    <li><a href="ficha.html">Ficha</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ÁREA PRINCIPAL DO MAPA (LAYOUT LADO A LADO) -->
+    <main class="map-area">
+
+        <div class="map-main-layout">
+
+            <!-- PAINEL ESQUERDO: TEXTOS E HISTÓRIA DA ILHA -->
+            <section class="map-intro-text">
+                <h1 class="map-intro-title">As Crônicas de Kagetsumi — Geografia e História</h1>
+
+                <p class="map-intro-paragraph">
+                    A ilha de Kagetsumi não é apenas um ponto no mapa; é um organismo vivo, marcado por feridas antigas
+                    e cicatrizes que ainda sangram. Cada região é um capítulo da mesma tragédia, e cada uma guarda
+                    segredos sobre a ascensão dos Onis e a luta desesperada dos caçadores.
+                </p>
+
+                <div class="map-instruction-box">
+                    <span class="instruction-title">INSTRUÇÕES DE EXPLORAÇÃO</span>
+                    <p>Selecione qualquer uma das regiões marcadas no mapa ao lado para consultar os dados territoriais,
+                        relatórios de perigo e histórico de batalha do local.</p>
+                </div>
+            </section>
+
+            <!-- PAINEL DIREITO: MAPA INTERATIVO (SEM CARD OU BORDA) -->
+            <section class="map-container-direct">
+                <div class="map-stage" id="mapStage"></div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- POPUP / MODAL DE REGIÃO (JANELA FLUTUANTE RETRÔ) -->
+    <div class="modal-overlay" id="regionModalOverlay" hidden>
+        <div class="region-modal" role="dialog" aria-labelledby="modalTitle">
+
+            <button class="modal-close-x" id="modalCloseX" aria-label="Fechar">✕</button>
+
+            <!-- TOPO DO POPUP -->
+            <header class="modal-header">
+                <h2 class="modal-title" id="modalTitle">—</h2>
+                <span class="modal-badge" id="modalBadge">TIPO</span>
+            </header>
+
+            <!-- CORPO DO POPUP -->
+            <div class="modal-body">
+                <div class="modal-image-wrapper">
+                    <img id="modalImage" class="modal-image" src="" alt="Ilustração do local">
+                </div>
+
+                <p class="modal-desc" id="modalDesc">—</p>
+
+                <div class="modal-danger-box">
+                    <span class="modal-danger-label">PERIGO</span>
+                    <div class="modal-danger-bar" id="modalDangerBar"></div>
+                    <span class="modal-danger-val" id="modalDangerVal">0 / 10</span>
+                </div>
+            </div>
+
+            <!-- RODAPÉ DO POPUP -->
+            <footer class="modal-footer">
+                <button class="btn-modal-primary" id="modalExploreBtn" type="button">Explorar Região</button>
+                <button class="btn-modal-secondary" id="modalCloseBtn" type="button">Fechar</button>
+            </footer>
+
+        </div>
+    </div>
+
+    <div class="toast" id="toast" hidden>
+        <span class="toast-text"></span>
+    </div>
+
+    <!-- Leaflet API JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="data/mapa.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/mapa.js"></script>
+
+</body>
+
+</html>

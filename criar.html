@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Ficha — Caçador Solitário</title>
+
+    <link rel="icon" type="image/svg+xml" href="assets/icons/ui/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Pixelify+Sans:wght@400;600;700&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/criar.css">
+</head>
+
+<body class="pagina-criar">
+
+    <!-- ============================================================
+     HEADER
+     ============================================================ -->
+    <header class="main-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark">火</span>
+                <span>Caçador Solitário</span>
+            </a>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="personagens.html">Personagens</a></li>
+                    <li><a href="historia.html">História</a></li>
+                    <li><a href="mapa.html">Mapa</a></li>
+                    <li><a href="ficha.html">Ficha</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================================
+     WIZARD DE CRIAÇÃO
+     ============================================================ -->
+    <main class="create-area">
+
+        <div class="container">
+
+            <!-- Cabeçalho -->
+            <div class="create-header">
+                <span class="eyebrow">Criação de Personagem</span>
+                <h1 class="create-title">Criar Ficha</h1>
+                <p class="create-subtitle">
+                    Distribua os pontos, escolha sua respiração e comece a jornada.
+                </p>
+            </div>
+
+            <!-- Barra de passos -->
+            <nav class="stepper" aria-label="Etapas">
+                <ol class="stepper-list">
+                    <li class="stepper-item active" data-step="1">
+                        <span class="stepper-num">1</span>
+                        <span class="stepper-label">Identidade</span>
+                    </li>
+                    <li class="stepper-item" data-step="2">
+                        <span class="stepper-num">2</span>
+                        <span class="stepper-label">Atributos</span>
+                    </li>
+                    <li class="stepper-item" data-step="3">
+                        <span class="stepper-num">3</span>
+                        <span class="stepper-label">Respiração</span>
+                    </li>
+                    <li class="stepper-item" data-step="4">
+                        <span class="stepper-num">4</span>
+                        <span class="stepper-label">Equipamento</span>
+                    </li>
+                    <li class="stepper-item" data-step="5">
+                        <span class="stepper-num">5</span>
+                        <span class="stepper-label">Confirmação</span>
+                    </li>
+                </ol>
+            </nav>
+
+            <!-- Painel de conteúdo -->
+            <div class="create-layout">
+
+                <!-- Coluna principal -->
+                <div class="create-main">
+
+                    <!-- ========== ETAPA 1: IDENTIDADE ========== -->
+                    <section class="step-panel active" data-panel="1">
+                        <h2 class="step-title">Quem é você?</h2>
+                        <p class="step-desc">Escolha o nome, a idade e a aparência do seu caçador.</p>
+
+                        <div class="form-group">
+                            <label class="form-label" for="charName">Nome do Caçador</label>
+                            <input type="text" id="charName" class="form-input" placeholder="Ex: Kaito Ren"
+                                maxlength="24" required>
+                            <p class="form-help">Entre 3 e 24 caracteres.</p>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="charAge">Idade</label>
+                                <input type="number" id="charAge" class="form-input" min="14" max="60" value="16">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="charGender">Gênero</label>
+                                <select id="charGender" class="form-input">
+                                    <option value="m">Masculino</option>
+                                    <option value="f">Feminino</option>
+                                    <option value="n">Não-binário</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="charBackground">Origem</label>
+                            <select id="charBackground" class="form-input">
+                                <option value="vila">Vila pacata</option>
+                                <option value="floresta">Floresta isolada</option>
+                                <option value="costa">Vila costeira</option>
+                                <option value="montanha">Montanha</option>
+                                <option value="cidade">Cidade grande</option>
+                            </select>
+                            <p class="form-help">De onde você veio antes de se tornar caçador.</p>
+                        </div>
+                    </section>
+
+                    <!-- ========== ETAPA 2: ATRIBUTOS ========== -->
+                    <section class="step-panel" data-panel="2">
+                        <h2 class="step-title">Distribua seus atributos</h2>
+                        <p class="step-desc">
+                            Você tem <strong id="pointsTotal">30</strong> pontos para distribuir.
+                            Mínimo <strong>3</strong> por atributo, máximo <strong>10</strong>.
+                        </p>
+
+                        <!-- Contador de pontos restantes -->
+                        <div class="points-counter" id="pointsCounter">
+                            <div class="points-counter-main">
+                                <span class="points-counter-value" id="pointsRemaining">30</span>
+                                <span class="points-counter-label">pontos restantes</span>
+                            </div>
+                            <div class="points-counter-secondary">
+                                <span>Mín: <strong>3</strong></span>
+                                <span>Máx: <strong>10</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Lista de atributos -->
+                        <div class="attributes-editor" id="attributesEditor">
+                            <!-- Linhas entram via JS -->
+                        </div>
+
+                        <!-- Preview calculado -->
+                        <div class="preview-block">
+                            <h3 class="preview-title">Derivados</h3>
+                            <div class="preview-grid">
+                                <div class="preview-item">
+                                    <span class="preview-icon preview-icon-hp">♥</span>
+                                    <div>
+                                        <span class="preview-label">Pontos de Vida (HP)</span>
+                                        <span class="preview-value" id="previewHp">—</span>
+                                    </div>
+                                </div>
+                                <div class="preview-item">
+                                    <span class="preview-icon preview-icon-san">◈</span>
+                                    <div>
+                                        <span class="preview-label">Sanidade (SAN)</span>
+                                        <span class="preview-value" id="previewSan">—</span>
+                                    </div>
+                                </div>
+                                <div class="preview-item">
+                                    <span class="preview-icon preview-icon-atk">⚔</span>
+                                    <div>
+                                        <span class="preview-label">Ataque</span>
+                                        <span class="preview-value" id="previewAtk">—</span>
+                                    </div>
+                                </div>
+                                <div class="preview-item">
+                                    <span class="preview-icon preview-icon-def">🛡</span>
+                                    <div>
+                                        <span class="preview-label">Defesa</span>
+                                        <span class="preview-value" id="previewDef">—</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ========== ETAPA 3: RESPIRAÇÃO ========== -->
+                    <section class="step-panel" data-panel="3">
+                        <h2 class="step-title">Escolha sua Respiração</h2>
+                        <p class="step-desc">Cada respiração concede bônus únicos ao caçador.</p>
+
+                        <div class="cards-select" id="breathingSelect">
+                            <!-- Cards entram via JS -->
+                        </div>
+                    </section>
+
+                    <!-- ========== ETAPA 4: EQUIPAMENTO ========== -->
+                    <section class="step-panel" data-panel="4">
+                        <h2 class="step-title">Escolha seu equipamento inicial</h2>
+                        <p class="step-desc">Comece a jornada com o equipamento que combina com seu estilo.</p>
+
+                        <div class="cards-select" id="equipmentSelect">
+                            <!-- Cards entram via JS -->
+                        </div>
+                    </section>
+
+                    <!-- ========== ETAPA 5: CONFIRMAÇÃO ========== -->
+                    <section class="step-panel" data-panel="5">
+                        <h2 class="step-title">Confirme sua ficha</h2>
+                        <p class="step-desc">Revise tudo antes de iniciar a jornada.</p>
+
+                        <div class="summary" id="summary">
+                            <!-- Resumo entra via JS -->
+                        </div>
+                    </section>
+
+                    <!-- Navegação entre etapas -->
+                    <div class="step-nav">
+                        <button class="btn btn-ghost" id="prevBtn" type="button" disabled>
+                            ◀ Voltar
+                        </button>
+                        <button class="btn btn-primary" id="nextBtn" type="button">
+                            Próximo ▶
+                        </button>
+                        <button class="btn btn-primary" id="confirmBtn" type="button" hidden>
+                            Começar Jornada ✦
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Coluna lateral: preview do personagem -->
+                <aside class="create-sidebar">
+
+                    <div class="preview-card">
+                        <div class="preview-card-header">
+                            <span class="preview-card-label">PREVIEW</span>
+                        </div>
+
+                        <div class="preview-portrait">
+                            <img src="assets/images/personagem.png" alt="Preview" class="preview-portrait-img"
+                                id="previewPortrait">
+                        </div>
+
+                        <div class="preview-name" id="previewName">— Sem nome —</div>
+                        <div class="preview-role" id="previewRole">— sem respiração —</div>
+
+                        <div class="preview-stats" id="previewStats">
+                            <!-- Stats compactas entram via JS -->
+                        </div>
+
+                        <div class="preview-meters">
+                            <div class="meter meter--hp">
+                                <div class="meter__label">
+                                    <span>♥ HP</span>
+                                    <span class="meter__value" id="sidebarHp">— / —</span>
+                                </div>
+                                <div class="meter__segments" id="sidebarHpSegments"></div>
+                            </div>
+                            <div class="meter meter--san">
+                                <div class="meter__label">
+                                    <span>◈ SAN</span>
+                                    <span class="meter__value" id="sidebarSan">— / —</span>
+                                </div>
+                                <div class="meter__segments" id="sidebarSanSegments"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Avisos -->
+                    <div class="sidebar-info">
+                        <p class="sidebar-hint">
+                            <strong>Dica:</strong> Um caçador equilibrado costuma ter
+                            pelo menos <strong>VIT</strong> e <strong>AGI</strong> em 6 ou mais.
+                        </p>
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Toast -->
+    <div class="toast" id="toast" hidden>
+        <span class="toast-text"></span>
+    </div>
+
+    <script src="data/atributos.js"></script>
+    <script src="data/respiracoes.js"></script>
+    <script src="data/equipamentos.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/criar.js"></script>
+
+</body>
+
+</html>

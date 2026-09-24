@@ -1,0 +1,300 @@
+﻿/* ============================================================
+   CAÇADOR SOLITÁRIO — global.css (Estilos Globais e do Jogo)
+   ============================================================ */
+
+/* 1. VARIÁVEIS DO SISTEMA (DESIGN SYSTEM) */
+:root {
+   /* Cores de Fundo */
+   --bg-void: #040406;
+   --bg-surface: #121214;
+   --bg-elevated: #1a1a1e;
+
+   /* Cores de Destaque (Accents) */
+   --accent-blood-hot: #E65B5B;
+   --accent-blood-dark: #8a2424;
+   --accent-gold: #ebb432;
+   --accent-spirit: #41a6b5;
+
+   /* Cores de Texto */
+   --text-primary: #ffffff;
+   --text-secondary: #cccccc;
+   --text-muted: #888888;
+
+   /* Cores de Estado */
+   --state-danger: #e63946;
+   --state-success: #2a9d8f;
+
+   /* Tipografia */
+   --font-pixel: 'Pixelify Sans', 'Press Start 2P', monospace;
+   --font-ui: 'IBM Plex Sans', sans-serif;
+
+   /* Font Sizes */
+   --fs-sm: 12px;
+   --fs-base: 14px;
+   --fs-lg: 18px;
+   --fs-xl: 22px;
+
+   /* Efeitos e Sombras Pixeladas */
+   --shadow-pixel: 0 0 0 2px var(--bg-void), 0 0 12px rgba(230, 91, 91, 0.25);
+   --shadow-pixel-lg: 0 0 0 4px var(--bg-void), 0 0 25px rgba(0, 0, 0, 0.85);
+
+   /* Dimensões da Interface */
+   --header-height: 60px;
+
+   /* Espaçamentos */
+   --space-1: 4px;
+   --space-2: 8px;
+   --space-3: 12px;
+   --space-4: 16px;
+   --space-5: 24px;
+}
+
+/* 2. RESET E NORMALIZAÇÃO */
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+html,
+body {
+   width: 100%;
+   height: 100%;
+   background-color: var(--bg-void);
+   color: var(--text-primary);
+   font-family: var(--font-ui);
+   font-size: var(--fs-base);
+   line-height: 1.5;
+   -webkit-font-smoothing: antialiased;
+}
+
+/* 3. CABEÇALHO PRINCIPAL (MAIN HEADER) */
+.main-header {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: var(--header-height);
+   background: rgba(18, 18, 20, 0.95);
+   border-bottom: 2px solid var(--accent-blood-hot);
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+   z-index: 1000;
+   backdrop-filter: blur(4px);
+}
+
+.header-inner {
+   max-width: 1400px;
+   height: 100%;
+   margin: 0 auto;
+   padding-inline: var(--space-4);
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.brand {
+   display: flex;
+   align-items: center;
+   gap: var(--space-2);
+   text-decoration: none;
+   color: var(--text-primary);
+   font-family: var(--font-pixel);
+   font-size: var(--fs-lg);
+   font-weight: 700;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+}
+
+.brand-mark {
+   color: var(--accent-blood-hot);
+   font-size: 20px;
+}
+
+.main-nav {
+   display: flex;
+   list-style: none;
+   gap: var(--space-4);
+}
+
+.main-nav a {
+   text-decoration: none;
+   color: var(--text-secondary);
+   font-family: var(--font-pixel);
+   font-size: var(--fs-sm);
+   text-transform: uppercase;
+   padding: var(--space-2) var(--space-3);
+   border: 1px solid transparent;
+   transition: all 0.2s steps(2);
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+   color: var(--accent-blood-hot);
+   border-color: var(--accent-blood-hot);
+   background: rgba(230, 91, 91, 0.1);
+}
+
+/* 4. CONTAINER DO JOGO (`jogar.html`) */
+body.pagina-jogo {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   min-height: 100vh;
+   padding-top: var(--header-height);
+   overflow: hidden;
+}
+
+.game-viewport {
+   position: relative;
+   width: 1024px;
+   height: 576px;
+   border: 3px solid var(--accent-blood-hot);
+   box-shadow: 0 0 35px rgba(230, 91, 91, 0.35), inset 0 0 15px rgba(0, 0, 0, 0.8);
+   background: #000000;
+   overflow: hidden;
+}
+
+#gameCanvas {
+   width: 100%;
+   height: 100%;
+   image-rendering: pixelated;
+   image-rendering: crisp-edges;
+   display: block;
+}
+
+/* 5. OVERLAYS DA INTERFACE DO JOGO (HUD) */
+.game-ui-overlay {
+   position: absolute;
+   top: 16px;
+   left: 16px;
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   background: rgba(8, 8, 12, 0.85);
+   border: 1px solid rgba(230, 91, 91, 0.5);
+   padding: 8px 16px;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+   pointer-events: none;
+}
+
+.ui-region-tag {
+   font-family: var(--font-pixel);
+   font-size: 11px;
+   color: var(--accent-gold);
+   text-transform: uppercase;
+   letter-spacing: 1.5px;
+   text-shadow: 0 0 5px rgba(235, 180, 50, 0.4);
+}
+
+.controls-hint {
+   position: absolute;
+   bottom: 16px;
+   right: 16px;
+   background: rgba(8, 8, 12, 0.85);
+   border: 1px solid rgba(255, 255, 255, 0.2);
+   padding: 8px 14px;
+   font-family: var(--font-pixel);
+   font-size: 11px;
+   color: var(--text-secondary);
+   pointer-events: none;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.controls-key {
+   color: var(--accent-blood-hot);
+   font-weight: bold;
+}
+
+/* 6. BOTÕES RETRÔ E COMPONENTES REUTILIZÁVEIS */
+.btn {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   padding: var(--space-2) var(--space-4);
+   font-family: var(--font-pixel);
+   font-size: var(--fs-sm);
+   text-transform: uppercase;
+   cursor: pointer;
+   border: none;
+   transition: all 0.2s steps(2);
+}
+
+.btn-primary {
+   background: var(--accent-blood-hot);
+   color: var(--text-primary);
+   border: 1px solid var(--accent-blood-hot);
+}
+
+.btn-primary:hover {
+   background: var(--accent-blood-dark);
+   box-shadow: 0 0 10px rgba(230, 91, 91, 0.5);
+}
+
+.btn-secondary {
+   background: var(--bg-elevated);
+   color: var(--text-secondary);
+   border: 1px solid var(--bg-elevated);
+}
+
+.btn-secondary:hover {
+   color: var(--text-primary);
+   border-color: var(--text-primary);
+}
+
+/* 7. SISTEMA DE NOTIFICAÇÃO (TOAST) */
+.toast {
+   position: fixed;
+   bottom: 24px;
+   left: 50%;
+   transform: translateX(-50%);
+   background: var(--bg-surface);
+   border: 1px solid var(--accent-gold);
+   color: var(--text-primary);
+   padding: var(--space-3) var(--space-5);
+   font-family: var(--font-pixel);
+   font-size: var(--fs-sm);
+   box-shadow: var(--shadow-pixel-lg);
+   z-index: 10000;
+   animation: toastPop 0.2s steps(2) forwards;
+}
+
+.toast[hidden] {
+   display: none !important;
+}
+
+@keyframes toastPop {
+   from {
+      opacity: 0;
+      transform: translate(-50%, 10px);
+   }
+
+   to {
+      opacity: 1;
+      transform: translate(-50%, 0);
+   }
+}
+
+/* 8. ADAPTAÇÕES RESPONSIVAS */
+@media (max-width: 1080px) {
+   .game-viewport {
+      width: 95vw;
+      height: calc(95vw * (576 / 1024));
+   }
+}
+
+@media (max-width: 768px) {
+   .header-inner {
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--space-2);
+   }
+
+   .main-nav {
+      gap: var(--space-2);
+   }
+
+   .controls-hint {
+      display: none;
+   }
+}

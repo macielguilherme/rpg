@@ -1,0 +1,376 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha — Caçador Solitário</title>
+
+    <link rel="icon" type="image/svg+xml" href="assets/icons/ui/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Pixelify+Sans:wght@400;600;700&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/ficha.css">
+</head>
+
+<body class="pagina-ficha">
+
+    <!-- ============================================================
+     HEADER
+     ============================================================ -->
+    <header class="main-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark">火</span>
+                <span>Caçador Solitário</span>
+            </a>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="personagens.html">Personagens</a></li>
+                    <li><a href="historia.html">História</a></li>
+                    <li><a href="mapa.html">Mapa</a></li>
+                    <li><a href="ficha.html">Ficha</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================================
+     ÁREA DA FICHA
+     ============================================================ -->
+    <main class="sheet-area">
+        <div class="container">
+
+            <!-- Cabeçalho -->
+            <div class="sheet-header">
+                <span class="eyebrow">Menu de Status</span>
+                <h1 class="sheet-title">Ficha de Personagem</h1>
+                <p class="sheet-subtitle">Seus atributos, equipamentos e progresso.</p>
+            </div>
+
+            <!-- Se não tiver ficha criada -->
+            <div class="empty-state" id="emptyState" hidden>
+                <div class="empty-icon">⚔</div>
+                <h2 class="empty-title">Nenhuma ficha encontrada</h2>
+                <p class="empty-text">
+                    Você ainda não criou seu caçador. Comece sua jornada agora.
+                </p>
+                <a href="criar.html" class="btn btn-primary btn-lg">Criar Ficha</a>
+            </div>
+
+            <!-- Ficha completa (aparece se tiver ficha salva) -->
+            <div class="sheet" id="sheet" hidden>
+
+                <!-- ============================================================
+                 IDENTIDADE
+                 ============================================================ -->
+                <section class="sheet__identity">
+
+                    <div class="sheet__portrait">
+                        <img id="sheetPortrait" src="assets/images/personagem.png" alt="Retrato do caçador"
+                            class="sheet__portrait-img">
+                        <div class="sheet__portrait-frame"></div>
+                    </div>
+
+                    <div class="sheet__info">
+
+                        <div class="sheet__name-row">
+                            <h2 class="sheet__name" id="sheetName">—</h2>
+                            <span class="badge badge-gold" id="sheetLevel">LV. 1</span>
+                        </div>
+
+                        <p class="sheet__class" id="sheetClass">—</p>
+
+                        <div class="sheet__meta">
+                            <div class="sheet__meta-item">
+                                <span class="sheet__meta-label">IDADE</span>
+                                <span class="sheet__meta-value" id="sheetAge">—</span>
+                            </div>
+                            <div class="sheet__meta-item">
+                                <span class="sheet__meta-label">ORIGEM</span>
+                                <span class="sheet__meta-value" id="sheetOrigin">—</span>
+                            </div>
+                            <div class="sheet__meta-item">
+                                <span class="sheet__meta-label">RESPIRAÇÃO</span>
+                                <span class="sheet__meta-value" id="sheetBreath">—</span>
+                            </div>
+                        </div>
+
+                        <!-- XP Bar -->
+                        <div class="xp-bar">
+                            <div class="xp-bar__label">
+                                <span>EXPERIÊNCIA</span>
+                                <span class="xp-bar__value" id="sheetXpValue">0 / 100</span>
+                            </div>
+                            <div class="xp-bar__track">
+                                <div class="xp-bar__fill" id="sheetXpFill" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- ============================================================
+                 HP / SAN / MOEDAS
+                 ============================================================ -->
+                <section class="sheet__vitals">
+
+                    <div class="vital-box">
+                        <div class="vital-box__header">
+                            <span class="vital-box__icon vital-box__icon--hp">♥</span>
+                            <span class="vital-box__title">Pontos de Vida</span>
+                        </div>
+                        <div class="vital-box__value" id="sheetHpValue">— / —</div>
+                        <div class="vital-box__bar">
+                            <div class="vital-box__fill vital-box__fill--hp" id="sheetHpFill" style="width: 100%"></div>
+                        </div>
+                    </div>
+
+                    <div class="vital-box">
+                        <div class="vital-box__header">
+                            <span class="vital-box__icon vital-box__icon--san">◈</span>
+                            <span class="vital-box__title">Sanidade</span>
+                        </div>
+                        <div class="vital-box__value" id="sheetSanValue">— / —</div>
+                        <div class="vital-box__bar">
+                            <div class="vital-box__fill vital-box__fill--san" id="sheetSanFill" style="width: 100%">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vital-box vital-box--compact">
+                        <div class="vital-box__header">
+                            <span class="vital-box__icon vital-box__icon--gold">◉</span>
+                            <span class="vital-box__title">Moedas</span>
+                        </div>
+                        <div class="vital-box__value" id="sheetCoins">0</div>
+                    </div>
+
+                </section>
+
+                <!-- ============================================================
+                 SUB-ABAS
+                 ============================================================ -->
+                <nav class="sheet__tabs" role="tablist">
+                    <button class="sheet__tab active" data-panel="panelStatus" role="tab" type="button">
+                        Status
+                    </button>
+                    <button class="sheet__tab" data-panel="panelAttrs" role="tab" type="button">
+                        Atributos
+                    </button>
+                    <button class="sheet__tab" data-panel="panelEquip" role="tab" type="button">
+                        Equipamentos
+                    </button>
+                    <button class="sheet__tab" data-panel="panelHistory" role="tab" type="button">
+                        Histórico
+                    </button>
+                    <button class="sheet__tab" data-panel="panelActions" role="tab" type="button">
+                        Ações
+                    </button>
+                </nav>
+
+                <!-- ============================================================
+                 PAINEL: STATUS
+                 ============================================================ -->
+                <section class="sheet__panel active" id="panelStatus">
+
+                    <div class="panel-grid-2">
+
+                        <div class="info-block">
+                            <h3 class="info-block__title">Combate</h3>
+
+                            <div class="status-row">
+                                <span class="status-row__label">ATAQUE</span>
+                                <span class="status-row__value" id="statAtk">—</span>
+                            </div>
+                            <div class="status-row">
+                                <span class="status-row__label">DEFESA</span>
+                                <span class="status-row__value" id="statDef">—</span>
+                            </div>
+                            <div class="status-row">
+                                <span class="status-row__label">CRÍTICO</span>
+                                <span class="status-row__value" id="statCrit">—%</span>
+                            </div>
+                            <div class="status-row">
+                                <span class="status-row__label">ESQUIVA</span>
+                                <span class="status-row__value" id="statDodge">—%</span>
+                            </div>
+                        </div>
+
+                        <div class="info-block">
+                            <h3 class="info-block__title">Progresso</h3>
+
+                            <div class="status-row">
+                                <span class="status-row__label">NÍVEL</span>
+                                <span class="status-row__value" id="statLevel">1</span>
+                            </div>
+                            <div class="status-row">
+                                <span class="status-row__label">XP TOTAL</span>
+                                <span class="status-row__value" id="statXpTotal">0</span>
+                            </div>
+                            <div class="status-row">
+                                <span class="status-row__label">INIMIGOS</span>
+                                <span class="status-row__value" id="statKills">0</span>
+                            </div>
+                            <div class="status-row">
+                                <span class="status-row__label">CAPÍTULOS</span>
+                                <span class="status-row__value" id="statChapters">0 / 4</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- ============================================================
+                 PAINEL: ATRIBUTOS
+                 ============================================================ -->
+                <section class="sheet__panel" id="panelAttrs">
+
+                    <h3 class="panel-title">Atributos</h3>
+                    <p class="panel-desc">Os seis pilares do caçador.</p>
+
+                    <div class="attributes-list" id="attributesList">
+                        <!-- Atributos entram via JS -->
+                    </div>
+
+                </section>
+
+                <!-- ============================================================
+                 PAINEL: EQUIPAMENTOS
+                 ============================================================ -->
+                <section class="sheet__panel" id="panelEquip">
+
+                    <h3 class="panel-title">Equipamentos</h3>
+                    <p class="panel-desc">O que você carrega na jornada.</p>
+
+                    <div class="equipment-grid">
+                        <button class="equip-slot" data-slot="arma" type="button">
+                            <span class="equip-slot__icon" id="equipIconWeapon">⚔</span>
+                            <span class="equip-slot__label">ARMA</span>
+                            <span class="equip-slot__name" id="equipNameWeapon">—</span>
+                        </button>
+
+                        <button class="equip-slot" data-slot="armadura" type="button">
+                            <span class="equip-slot__icon" id="equipIconArmor">◈</span>
+                            <span class="equip-slot__label">ARMADURA</span>
+                            <span class="equip-slot__name" id="equipNameArmor">—</span>
+                        </button>
+
+                        <button class="equip-slot" data-slot="amuleto" type="button">
+                            <span class="equip-slot__icon" id="equipIconAmulet">◆</span>
+                            <span class="equip-slot__label">AMULETO</span>
+                            <span class="equip-slot__name" id="equipNameAmulet">—</span>
+                        </button>
+
+                        <button class="equip-slot" data-slot="item1" type="button">
+                            <span class="equip-slot__icon">✚</span>
+                            <span class="equip-slot__label">ITEM</span>
+                            <span class="equip-slot__name" id="equipNameItem1">—</span>
+                        </button>
+
+                        <button class="equip-slot" data-slot="item2" type="button">
+                            <span class="equip-slot__icon">✚</span>
+                            <span class="equip-slot__label">ITEM</span>
+                            <span class="equip-slot__name" id="equipNameItem2">—</span>
+                        </button>
+
+                        <button class="equip-slot" data-slot="item3" type="button">
+                            <span class="equip-slot__icon">✚</span>
+                            <span class="equip-slot__label">ITEM</span>
+                            <span class="equip-slot__name" id="equipNameItem3">—</span>
+                        </button>
+                    </div>
+
+                </section>
+
+                <!-- ============================================================
+                 PAINEL: HISTÓRICO
+                 ============================================================ -->
+                <section class="sheet__panel" id="panelHistory">
+
+                    <h3 class="panel-title">Histórico</h3>
+                    <p class="panel-desc">Sua jornada até agora.</p>
+
+                    <div class="chapters-list" id="chaptersList">
+                        <!-- Capítulos entram via JS -->
+                    </div>
+
+                </section>
+
+                <!-- ============================================================
+                 PAINEL: AÇÕES
+                 ============================================================ -->
+                <section class="sheet__panel" id="panelActions">
+
+                    <h3 class="panel-title">Ações</h3>
+                    <p class="panel-desc">O que você quer fazer?</p>
+
+                    <div class="actions-grid">
+
+                        <a href="jogar.html" class="action-card">
+                            <span class="action-card__icon">⚔</span>
+                            <span class="action-card__title">Continuar Jornada</span>
+                            <span class="action-card__desc">Retome de onde parou</span>
+                        </a>
+
+                        <a href="mapa.html" class="action-card">
+                            <span class="action-card__icon">◈</span>
+                            <span class="action-card__title">Explorar Mapa</span>
+                            <span class="action-card__desc">Descubra novas regiões</span>
+                        </a>
+
+                        <a href="criar.html" class="action-card">
+                            <span class="action-card__icon">✎</span>
+                            <span class="action-card__title">Editar Ficha</span>
+                            <span class="action-card__desc">Refaça seu caçador</span>
+                        </a>
+
+                        <button class="action-card action-card--danger" id="deleteSheetBtn" type="button">
+                            <span class="action-card__icon">✕</span>
+                            <span class="action-card__title">Apagar Ficha</span>
+                            <span class="action-card__desc">Recomece do zero</span>
+                        </button>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Modal de confirmação de exclusão -->
+    <div class="modal-overlay" id="confirmModal" aria-hidden="true">
+        <div class="modal-box modal-box--sm">
+            <h3 class="modal-title">Apagar ficha?</h3>
+            <p class="modal-desc">
+                Essa ação é permanente. Toda a sua jornada será perdida.
+            </p>
+            <div class="modal-actions">
+                <button class="btn btn-ghost" id="cancelDelete" type="button">Cancelar</button>
+                <button class="btn btn-danger" id="confirmDelete" type="button">Apagar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast" hidden>
+        <span class="toast-text"></span>
+    </div>
+
+    <script src="data/atributos.js"></script>
+    <script src="data/respiracoes.js"></script>
+    <script src="data/equipamentos.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/ficha.js"></script>
+
+</body>
+
+</html>

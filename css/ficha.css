@@ -1,0 +1,716 @@
+﻿/* ============================================================
+   CAÇADOR SOLITÁRIO — ficha.css
+   Ficha de personagem: identidade, vitais, abas, painéis
+   ============================================================ */
+
+
+/* ============================================================
+   1. PÁGINA
+   ============================================================ */
+.pagina-ficha {
+   background: var(--bg-void);
+}
+
+.sheet-area {
+   padding-top: calc(var(--header-height) + var(--space-7));
+   padding-bottom: var(--space-9);
+   min-height: 100vh;
+}
+
+.sheet-header {
+   max-width: 680px;
+   margin-bottom: var(--space-6);
+}
+
+.sheet-title {
+   font-size: var(--fs-xl);
+   letter-spacing: 1px;
+   margin-bottom: var(--space-2);
+   text-shadow: var(--shadow-pixel);
+}
+
+.sheet-subtitle {
+   font-family: var(--font-ui);
+   font-size: var(--fs-base);
+   color: var(--text-secondary);
+}
+
+
+/* ============================================================
+   2. EMPTY STATE
+   ============================================================ */
+.empty-state {
+   max-width: 480px;
+   margin: var(--space-8) auto;
+   padding: var(--space-8) var(--space-6);
+   text-align: center;
+   background: var(--bg-surface);
+   border: var(--border-thin) solid var(--bg-elevated);
+   box-shadow: var(--shadow-pixel-lg);
+}
+
+.empty-icon {
+   font-size: 40px;
+   color: var(--accent-blood);
+   margin-bottom: var(--space-4);
+}
+
+.empty-title {
+   font-size: var(--fs-lg);
+   margin-bottom: var(--space-3);
+}
+
+.empty-text {
+   font-family: var(--font-ui);
+   font-size: var(--fs-base);
+   color: var(--text-secondary);
+   line-height: 1.6;
+   margin-bottom: var(--space-6);
+}
+
+
+/* ============================================================
+   3. FICHA — CONTAINER
+   ============================================================ */
+.sheet {
+   display: flex;
+   flex-direction: column;
+   gap: var(--space-5);
+}
+
+
+/* ============================================================
+   4. IDENTIDADE
+   ============================================================ */
+.sheet__identity {
+   display: grid;
+   grid-template-columns: 200px 1fr;
+   gap: var(--space-6);
+   padding: var(--space-6);
+   background: var(--bg-surface);
+   border: var(--border-thin) solid var(--bg-elevated);
+   box-shadow: var(--shadow-pixel);
+}
+
+.sheet__portrait {
+   position: relative;
+   width: 200px;
+   height: 200px;
+}
+
+.sheet__portrait-img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   image-rendering: pixelated;
+   border: var(--border-thin) solid var(--bg-void);
+}
+
+.sheet__portrait-frame {
+   position: absolute;
+   inset: 0;
+   pointer-events: none;
+}
+
+.sheet__portrait-frame::before,
+.sheet__portrait-frame::after {
+   content: '';
+   position: absolute;
+   width: 10px;
+   height: 10px;
+   background: var(--accent-gold);
+}
+
+.sheet__portrait-frame::before {
+   top: -2px;
+   left: -2px;
+   box-shadow: 10px 0 0 var(--accent-gold), 0 10px 0 var(--accent-gold);
+}
+
+.sheet__portrait-frame::after {
+   right: -2px;
+   bottom: -2px;
+   box-shadow: -10px 0 0 var(--accent-gold), 0 -10px 0 var(--accent-gold);
+}
+
+.sheet__info {
+   display: flex;
+   flex-direction: column;
+   min-width: 0;
+}
+
+.sheet__name-row {
+   display: flex;
+   align-items: center;
+   gap: var(--space-3);
+   margin-bottom: var(--space-1);
+}
+
+.sheet__name {
+   font-size: var(--fs-xl);
+   letter-spacing: 1px;
+}
+
+.sheet__class {
+   font-family: var(--font-ui);
+   font-size: var(--fs-base);
+   color: var(--accent-spirit);
+   margin-bottom: var(--space-4);
+}
+
+.sheet__meta {
+   display: flex;
+   flex-wrap: wrap;
+   gap: var(--space-6);
+   margin-bottom: var(--space-5);
+}
+
+.sheet__meta-item {
+   display: flex;
+   flex-direction: column;
+   gap: 2px;
+}
+
+.sheet__meta-label {
+   font-family: var(--font-pixel);
+   font-size: 8px;
+   letter-spacing: 2px;
+   color: var(--text-muted);
+}
+
+.sheet__meta-value {
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   font-weight: 600;
+   color: var(--text-primary);
+}
+
+/* --- XP bar --- */
+.xp-bar {
+   margin-top: auto;
+}
+
+.xp-bar__label {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: var(--space-2);
+   font-family: var(--font-pixel);
+   font-size: 8px;
+   letter-spacing: 2px;
+   text-transform: uppercase;
+   color: var(--text-secondary);
+}
+
+.xp-bar__value {
+   font-family: var(--font-ui);
+   font-size: var(--fs-xs);
+   color: var(--accent-gold);
+}
+
+.xp-bar__track {
+   height: 12px;
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--bg-void);
+   overflow: hidden;
+}
+
+.xp-bar__fill {
+   height: 100%;
+   background: var(--xp-color);
+   transition: width var(--t-slow) steps(10);
+}
+
+
+/* ============================================================
+   5. VITAIS (HP / SAN / MOEDAS)
+   ============================================================ */
+.sheet__vitals {
+   display: grid;
+   grid-template-columns: 1fr 1fr auto;
+   gap: var(--space-4);
+}
+
+.vital-box {
+   padding: var(--space-4) var(--space-5);
+   background: var(--bg-surface);
+   border: var(--border-thin) solid var(--bg-elevated);
+   box-shadow: var(--shadow-pixel);
+}
+
+.vital-box--compact {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   min-width: 140px;
+}
+
+.vital-box__header {
+   display: flex;
+   align-items: center;
+   gap: var(--space-2);
+   margin-bottom: var(--space-2);
+}
+
+.vital-box__icon {
+   font-size: var(--fs-base);
+}
+
+.vital-box__icon--hp {
+   color: var(--hp-color);
+}
+
+.vital-box__icon--san {
+   color: var(--san-color);
+}
+
+.vital-box__icon--gold {
+   color: var(--accent-gold);
+}
+
+.vital-box__title {
+   font-family: var(--font-pixel);
+   font-size: 9px;
+   letter-spacing: 1px;
+   text-transform: uppercase;
+   color: var(--text-secondary);
+}
+
+.vital-box__value {
+   font-family: var(--font-ui);
+   font-size: var(--fs-lg);
+   font-weight: 700;
+   color: var(--text-primary);
+   margin-bottom: var(--space-2);
+}
+
+.vital-box__bar {
+   height: 14px;
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--bg-void);
+   overflow: hidden;
+}
+
+.vital-box__fill {
+   height: 100%;
+   transition: width var(--t-slow) steps(10);
+}
+
+.vital-box__fill--hp {
+   background: var(--hp-color);
+}
+
+.vital-box__fill--san {
+   background: var(--san-color);
+}
+
+
+/* ============================================================
+   6. SUB-ABAS
+   ============================================================ */
+.sheet__tabs {
+   display: flex;
+   gap: 2px;
+   flex-wrap: wrap;
+   background: var(--bg-surface);
+   border: var(--border-thin) solid var(--bg-elevated);
+   padding: 4px;
+}
+
+.sheet__tab {
+   padding: var(--space-3) var(--space-5);
+   font-family: var(--font-display);
+   font-size: var(--fs-sm);
+   font-weight: 600;
+   letter-spacing: 1px;
+   text-transform: uppercase;
+   color: var(--text-secondary);
+   background: transparent;
+   border: none;
+   cursor: pointer;
+   transition: color var(--t-fast) steps(2),
+      background-color var(--t-fast) steps(2);
+}
+
+.sheet__tab:hover {
+   color: var(--text-primary);
+}
+
+.sheet__tab.active {
+   color: var(--bg-void);
+   background: var(--accent-spirit);
+}
+
+
+/* ============================================================
+   7. PAINÉIS
+   ============================================================ */
+.sheet__panel {
+   display: none;
+   padding: var(--space-6);
+   background: var(--bg-surface);
+   border: var(--border-thin) solid var(--bg-elevated);
+   border-top: none;
+   box-shadow: var(--shadow-pixel);
+   animation: fade-in var(--t-med) steps(4);
+}
+
+.sheet__panel.active {
+   display: block;
+}
+
+.panel-title {
+   font-size: var(--fs-lg);
+   margin-bottom: var(--space-1);
+}
+
+.panel-desc {
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   color: var(--text-secondary);
+   margin-bottom: var(--space-5);
+}
+
+/* --- Grid 2 colunas dentro do painel Status --- */
+.panel-grid-2 {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: var(--space-6);
+}
+
+.info-block__title {
+   font-family: var(--font-pixel);
+   font-size: 10px;
+   letter-spacing: 2px;
+   text-transform: uppercase;
+   color: var(--accent-gold);
+   margin-bottom: var(--space-4);
+   padding-bottom: var(--space-2);
+   border-bottom: var(--border-thin) solid var(--bg-elevated);
+}
+
+.status-row {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: var(--space-2) 0;
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+}
+
+.status-row+.status-row {
+   border-top: 1px dashed var(--bg-elevated);
+}
+
+.status-row__label {
+   font-family: var(--font-pixel);
+   font-size: 9px;
+   letter-spacing: 1px;
+   color: var(--text-secondary);
+}
+
+.status-row__value {
+   font-weight: 700;
+   color: var(--text-primary);
+}
+
+
+/* ============================================================
+   8. ATRIBUTOS (lista com barras)
+   ============================================================ */
+.attributes-list {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: var(--space-5);
+}
+
+.attribute-row {
+   display: flex;
+   flex-direction: column;
+   gap: var(--space-2);
+}
+
+.attribute-row__head {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.attribute-row__abbr {
+   font-family: var(--font-pixel);
+   font-size: 11px;
+   letter-spacing: 2px;
+   color: var(--accent-spirit);
+}
+
+.attribute-row__name {
+   font-family: var(--font-ui);
+   font-size: var(--fs-xs);
+   color: var(--text-muted);
+}
+
+.attribute-row__value {
+   font-family: var(--font-ui);
+   font-size: var(--fs-md);
+   font-weight: 700;
+   color: var(--text-primary);
+}
+
+.attribute-row__bar {
+   height: 10px;
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--bg-void);
+   overflow: hidden;
+}
+
+.attribute-row__fill {
+   height: 100%;
+   background: var(--accent-spirit);
+   transition: width var(--t-slow) steps(10);
+}
+
+
+/* ============================================================
+   9. EQUIPAMENTOS
+   ============================================================ */
+.equipment-grid {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: var(--space-4);
+}
+
+.equip-slot {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: var(--space-2);
+   padding: var(--space-5) var(--space-3);
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--state-disabled);
+   cursor: pointer;
+   transition: border-color var(--t-fast) steps(2),
+      transform var(--t-fast) steps(1);
+   text-align: center;
+}
+
+.equip-slot:hover {
+   border-color: var(--accent-gold);
+   transform: translateY(-2px);
+}
+
+.equip-slot__icon {
+   font-size: 28px;
+   color: var(--accent-gold);
+}
+
+.equip-slot__label {
+   font-family: var(--font-pixel);
+   font-size: 8px;
+   letter-spacing: 2px;
+   color: var(--text-muted);
+}
+
+.equip-slot__name {
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   font-weight: 600;
+   color: var(--text-primary);
+}
+
+
+/* ============================================================
+   10. HISTÓRICO (capítulos)
+   ============================================================ */
+.chapters-list {
+   display: flex;
+   flex-direction: column;
+   gap: var(--space-3);
+}
+
+.chapter-list-item {
+   display: flex;
+   align-items: center;
+   gap: var(--space-4);
+   padding: var(--space-4);
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--bg-void);
+   border-left: var(--border-heavy) solid var(--accent-gold);
+}
+
+.chapter-list-item__num {
+   font-family: var(--font-pixel);
+   font-size: 12px;
+   color: var(--accent-gold);
+   flex-shrink: 0;
+}
+
+.chapter-list-item__body {
+   flex: 1;
+   min-width: 0;
+}
+
+.chapter-list-item__title {
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   font-weight: 700;
+   color: var(--text-primary);
+}
+
+.chapter-list-item__date {
+   font-family: var(--font-ui);
+   font-size: var(--fs-xs);
+   color: var(--text-muted);
+}
+
+
+/* ============================================================
+   11. AÇÕES
+   ============================================================ */
+.actions-grid {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: var(--space-4);
+}
+
+.action-card {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   gap: var(--space-2);
+   padding: var(--space-5);
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--state-disabled);
+   color: var(--text-primary);
+   text-decoration: none;
+   cursor: pointer;
+   text-align: left;
+   transition: border-color var(--t-fast) steps(2),
+      transform var(--t-fast) steps(1),
+      box-shadow var(--t-fast) steps(1);
+}
+
+.action-card:hover {
+   border-color: var(--accent-spirit);
+   transform: translateY(-2px);
+   box-shadow: var(--shadow-pixel);
+   color: var(--text-primary);
+}
+
+.action-card__icon {
+   font-size: 22px;
+   color: var(--accent-spirit);
+}
+
+.action-card__title {
+   font-family: var(--font-display);
+   font-size: var(--fs-base);
+   font-weight: 700;
+}
+
+.action-card__desc {
+   font-family: var(--font-ui);
+   font-size: var(--fs-xs);
+   color: var(--text-secondary);
+}
+
+.action-card--danger {
+   width: 100%;
+}
+
+.action-card--danger:hover {
+   border-color: var(--state-danger);
+}
+
+.action-card--danger .action-card__icon {
+   color: var(--state-danger);
+}
+
+.modal-box--sm {
+   max-width: 420px;
+}
+
+.modal-desc {
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   color: var(--text-secondary);
+   line-height: 1.6;
+   margin-bottom: var(--space-6);
+}
+
+.modal-actions {
+   display: flex;
+   justify-content: flex-end;
+   gap: var(--space-3);
+}
+
+
+/* ============================================================
+   12. RESPONSIVO
+   ============================================================ */
+@media (max-width: 900px) {
+   .sheet__identity {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+   }
+
+   .sheet__name-row {
+      justify-content: center;
+   }
+
+   .sheet__meta {
+      justify-content: center;
+   }
+
+   .panel-grid-2 {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+   }
+
+   .attributes-list {
+      grid-template-columns: 1fr;
+   }
+}
+
+@media (max-width: 768px) {
+   .sheet__vitals {
+      grid-template-columns: 1fr;
+   }
+
+   .vital-box--compact {
+      min-width: 0;
+   }
+
+   .sheet__tabs {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+   }
+
+   .sheet__tab {
+      flex-shrink: 0;
+      padding: var(--space-3) var(--space-4);
+      font-size: 12px;
+   }
+
+   .equipment-grid {
+      grid-template-columns: repeat(2, 1fr);
+   }
+
+   .actions-grid {
+      grid-template-columns: 1fr;
+   }
+}
+
+@media (max-width: 480px) {
+   .sheet__identity {
+      padding: var(--space-4);
+   }
+
+   .sheet__panel {
+      padding: var(--space-4);
+   }
+
+   .equipment-grid {
+      grid-template-columns: 1fr 1fr;
+   }
+}

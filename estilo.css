@@ -1,0 +1,203 @@
+﻿/* ============================================================
+   ARQUIVO: css/estilo.css
+   Descrição: Utilitários, Efeitos Especiais e Animações Extras
+   (Filtro CRT, cursores, helpers de margem e cor)
+   ============================================================ */
+
+/* ============================================================
+   1. EFEITO CRT (Design System 6.4)
+   ============================================================ */
+.crt-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background: repeating-linear-gradient(to bottom,
+            transparent 0,
+            transparent 3px,
+            rgba(255, 255, 255, 0.025) 4px);
+    opacity: 0.8;
+}
+
+/* ============================================================
+   2. ANIMAÇÕES (Design System 6)
+   ============================================================ */
+/* Cursor piscando para diálogos e menus */
+.cursor-blink {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background-color: var(--accent-blood-hot);
+    vertical-align: middle;
+    margin-left: 4px;
+    animation: blink-step 800ms steps(2) infinite;
+}
+
+@keyframes blink-step {
+
+    0%,
+    49% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Shake/Tremor para erros (ex: login falho) */
+.shake-error {
+    animation: shake 320ms steps(4) forwards;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-4px);
+    }
+
+    50% {
+        transform: translateX(4px);
+    }
+
+    75% {
+        transform: translateX(-4px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Transição de Cortina (Design System 6.3) */
+.curtain-transition::before,
+.curtain-transition::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    width: 50vw;
+    height: 100vh;
+    background-color: var(--bg-void);
+    z-index: 10000;
+    transition: transform 320ms steps(4);
+}
+
+.curtain-transition::before {
+    left: 0;
+    transform: translateX(-100%);
+}
+
+.curtain-transition::after {
+    right: 0;
+    transform: translateX(100%);
+}
+
+.curtain-transition.is-active::before {
+    transform: translateX(0);
+}
+
+.curtain-transition.is-active::after {
+    transform: translateX(0);
+}
+
+/* ============================================================
+   3. CLASSES UTILITÁRIAS DE COR
+   ============================================================ */
+.color-blood {
+    color: var(--accent-blood) !important;
+}
+
+.color-blood-hot {
+    color: var(--accent-blood-hot) !important;
+}
+
+.color-spirit {
+    color: var(--accent-spirit) !important;
+}
+
+.color-gold {
+    color: var(--accent-gold) !important;
+}
+
+.color-violet {
+    color: var(--accent-violet) !important;
+}
+
+.color-danger {
+    color: var(--state-danger) !important;
+}
+
+.color-success {
+    color: var(--state-success) !important;
+}
+
+/* ============================================================
+   4. CLASSES UTILITÁRIAS DE ALINHAMENTO E ESPAÇAMENTO
+   ============================================================ */
+.text-center {
+    text-align: center !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.mb-1 {
+    margin-bottom: var(--space-1) !important;
+}
+
+.mb-2 {
+    margin-bottom: var(--space-2) !important;
+}
+
+.mb-3 {
+    margin-bottom: var(--space-3) !important;
+}
+
+.mb-4 {
+    margin-bottom: var(--space-4) !important;
+}
+
+.mb-5 {
+    margin-bottom: var(--space-5) !important;
+}
+
+.mb-6 {
+    margin-bottom: var(--space-6) !important;
+}
+
+.mt-1 {
+    margin-top: var(--space-1) !important;
+}
+
+.mt-2 {
+    margin-top: var(--space-2) !important;
+}
+
+.mt-3 {
+    margin-top: var(--space-3) !important;
+}
+
+.mt-4 {
+    margin-top: var(--space-4) !important;
+}
+
+/* ============================================================
+   5. CURSORES PIXELADOS CUSTOMIZADOS (Opcional)
+   ============================================================ */
+/* Caso decida usar imagens pequenas para o mouse */
+.cursor-sword {
+    cursor: url('../assets/icons/ui/cursor-sword.png'), auto;
+}
+
+.cursor-pointer {
+    cursor: url('../assets/icons/ui/cursor-pointer.png'), pointer;
+}

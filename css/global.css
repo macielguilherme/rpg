@@ -1,0 +1,763 @@
+﻿/* ============================================================
+   ARQUIVO: css/global.css
+   Descrição: Design System — Caçador Solitário.
+   Regras gerais, cores, tipografia e componentes base.
+   ============================================================ */
+
+/* ============================================================
+   1. TOKENS E VARIÁVEIS CSS
+   ============================================================ */
+:root {
+   /* --- Cores Base --- */
+   --bg-void: #0D1017;
+   /* Abismo - Fundo principal, modal backdrop */
+   --bg-surface: #151A24;
+   /* Pedra Noturna - Cards, painéis, navbar */
+   --bg-elevated: #1D2430;
+   /* Aço Sombrio - Inputs, abas, estatísticas */
+   --bg-overlay: rgba(13, 16, 23, 0.82);
+   /* Backdrop para modais */
+
+   /* --- Cores de Texto --- */
+   --text-primary: #F4EBDD;
+   /* Marfim - Texto principal */
+   --text-secondary: #A9B0BE;
+   /* Cinza Névoa - Descrições, metadados */
+   --text-muted: #596170;
+   /* Para pequenos detalhes inativos */
+
+   /* --- Cores de Destaque / Ação --- */
+   --accent-blood: #C83C4A;
+   /* Sangue - Botões primários, HP, perigo */
+   --accent-blood-hot: #F05A5F;
+   /* Corte - Hover, foco, brilhos ativos */
+   --accent-spirit: #52D6D0;
+   /* Ciano Espiritual - Mapa, informação, links */
+   --accent-gold: #E0B65A;
+   /* Ouro Antigo - História, conquista, raridade */
+   --accent-violet: #8D79D6;
+   /* Névoa Lunar - SAN, místico, magia */
+
+   /* --- Estados --- */
+   --state-success: #62C98B;
+   /* Jade - Cura/Sucesso */
+   --state-warning: #E5A94A;
+   /* Âmbar - Aviso */
+   --state-danger: #E65B5B;
+   /* Ferida - Erro/Perigo */
+   --state-disabled: #596170;
+   /* Ferro Morto - Elementos inativos */
+
+   /* --- Variáveis Semânticas Adicionais --- */
+   --hp-color: var(--accent-blood);
+   --san-color: var(--accent-violet);
+   --xp-color: var(--accent-gold);
+
+   /* --- Tipografia --- */
+   --font-display: "Pixelify Sans", sans-serif;
+   /* Títulos, Nomes, Menus */
+   --font-pixel: "Press Start 2P", monospace;
+   /* HUD, números soltos, detalhes tech */
+   --font-ui: "IBM Plex Sans", sans-serif;
+   /* Textos longos, parágrafos, formulários */
+
+   /* Escala Tipográfica (Desktop) */
+   --fs-xs: 12px;
+   --fs-sm: 14px;
+   --fs-base: 16px;
+   --fs-md: 20px;
+   --fs-lg: 24px;
+   --fs-xl: 32px;
+   --fs-2xl: 40px;
+   --fs-hero: 48px;
+
+   /* --- Espaçamento (Base 8px) --- */
+   --space-1: 4px;
+   --space-2: 8px;
+   --space-3: 12px;
+   --space-4: 16px;
+   --space-5: 24px;
+   --space-6: 32px;
+   --space-7: 48px;
+   --space-8: 64px;
+   --space-9: 96px;
+
+   /* --- Bordas e Layout --- */
+   --border-thin: 2px;
+   --border-heavy: 4px;
+   --radius-none: 0px;
+   /* Evitamos bordas arredondadas modernas */
+   --container-max: 1200px;
+   --header-height: 72px;
+
+   /* --- Sombras (Pixeladas) --- */
+   --shadow-pixel: 4px 4px 0 var(--bg-void);
+   --shadow-pixel-lg: 8px 8px 0 var(--bg-void);
+   --shadow-pixel-hover: 4px 8px 0 var(--bg-void);
+   --shadow-inner-pixel: inset 4px 4px 0 rgba(0, 0, 0, 0.4);
+
+   /* --- Tempos de Animação (Steps) --- */
+   --t-fast: 80ms;
+   --t-med: 160ms;
+   --t-slow: 240ms;
+   --t-curtain: 320ms;
+}
+
+
+/* ============================================================
+   2. RESET E NORMALIZE BÁSICO
+   ============================================================ */
+*,
+*::before,
+*::after {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+html,
+body {
+   height: 100%;
+}
+
+body {
+   background-color: var(--bg-void);
+   color: var(--text-primary);
+   font-family: var(--font-ui);
+   font-size: var(--fs-base);
+   line-height: 1.5;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+
+   /* Cursor padrão temático (opcional, fallback) */
+   cursor: default;
+}
+
+/* Ocultar barra de rolagem onde não precisar, ou estilizá-la pixelada */
+::-webkit-scrollbar {
+   width: 12px;
+}
+
+::-webkit-scrollbar-track {
+   background: var(--bg-void);
+}
+
+::-webkit-scrollbar-thumb {
+   background: var(--state-disabled);
+   border: var(--border-thin) solid var(--bg-void);
+}
+
+::-webkit-scrollbar-thumb:hover {
+   background: var(--accent-blood);
+}
+
+/* Remove list styles */
+ul,
+ol {
+   list-style: none;
+}
+
+/* Links */
+a {
+   color: inherit;
+   text-decoration: none;
+}
+
+a:hover {
+   color: var(--accent-spirit);
+}
+
+/* Imagens */
+img {
+   max-width: 100%;
+   display: block;
+}
+
+/* Formulários reset mínimo */
+input,
+button,
+textarea,
+select {
+   font: inherit;
+   color: inherit;
+}
+
+
+/* ============================================================
+   3. TIPOGRAFIA GERAL
+   ============================================================ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   font-family: var(--font-display);
+   font-weight: 700;
+   color: var(--text-primary);
+   margin-bottom: var(--space-4);
+   line-height: 1.2;
+}
+
+h1 {
+   font-size: var(--fs-2xl);
+   letter-spacing: 1px;
+}
+
+h2 {
+   font-size: var(--fs-xl);
+   letter-spacing: 1px;
+}
+
+h3 {
+   font-size: var(--fs-lg);
+}
+
+h4 {
+   font-size: var(--fs-md);
+   font-weight: 600;
+}
+
+p {
+   margin-bottom: var(--space-4);
+}
+
+/* Acessórios tipográficos */
+.eyebrow {
+   display: block;
+   font-family: var(--font-pixel);
+   font-size: 10px;
+   letter-spacing: 2px;
+   text-transform: uppercase;
+   color: var(--accent-gold);
+   margin-bottom: var(--space-2);
+}
+
+.text-blood {
+   color: var(--accent-blood-hot);
+}
+
+.text-gold {
+   color: var(--accent-gold);
+}
+
+.text-spirit {
+   color: var(--accent-spirit);
+}
+
+
+/* ============================================================
+   4. LAYOUT / GRID
+   ============================================================ */
+.container {
+   width: 100%;
+   max-width: var(--container-max);
+   margin-inline: auto;
+   padding-inline: var(--space-6);
+}
+
+/* Utilitário para focar em elementos */
+:focus-visible {
+   outline: var(--border-thin) solid var(--accent-spirit);
+   outline-offset: 4px;
+}
+
+
+/* ============================================================
+   5. COMPONENTES — BOTÕES
+   ============================================================ */
+.btn {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   min-height: 48px;
+   padding: 0 var(--space-5);
+
+   font-family: var(--font-pixel);
+   font-size: 12px;
+   line-height: 16px;
+   letter-spacing: 1px;
+   text-transform: uppercase;
+
+   background-color: transparent;
+   color: var(--text-primary);
+   border: var(--border-thin) solid transparent;
+   cursor: pointer;
+   text-align: center;
+
+   /* Animações com steps(2) para "frame feeling" */
+   transition:
+      background-color var(--t-fast) steps(2),
+      border-color var(--t-fast) steps(2),
+      color var(--t-fast) steps(2),
+      transform var(--t-fast) steps(1),
+      box-shadow var(--t-fast) steps(1);
+}
+
+.btn:active:not(:disabled) {
+   transform: translate(4px, 4px);
+   box-shadow: 0 0 0 var(--bg-void) !important;
+}
+
+/* --- Botão Primário (SANGUE) --- */
+.btn-primary {
+   background-color: var(--accent-blood);
+   border-color: var(--accent-blood-hot);
+   color: var(--text-primary);
+   box-shadow: var(--shadow-pixel);
+}
+
+.btn-primary:hover:not(:disabled) {
+   background-color: var(--accent-blood-hot);
+}
+
+.btn-primary:disabled {
+   background-color: var(--state-disabled);
+   border-color: var(--state-disabled);
+   color: var(--text-secondary);
+   cursor: not-allowed;
+   box-shadow: none;
+}
+
+/* --- Botão Secundário (OURO ANTIGO) --- */
+.btn-secondary {
+   background-color: var(--bg-elevated);
+   border-color: var(--accent-gold);
+   color: var(--accent-gold);
+   box-shadow: var(--shadow-pixel);
+}
+
+.btn-secondary:hover:not(:disabled) {
+   background-color: var(--bg-surface);
+   color: var(--text-primary);
+   border-color: var(--accent-spirit);
+}
+
+/* --- Botão Ghost --- */
+.btn-ghost {
+   background-color: transparent;
+   border-color: transparent;
+   color: var(--text-secondary);
+}
+
+.btn-ghost:hover:not(:disabled) {
+   background-color: var(--bg-surface);
+   color: var(--text-primary);
+   border-color: var(--accent-spirit);
+}
+
+/* --- Botão Danger --- */
+.btn-danger {
+   background-color: var(--bg-elevated);
+   border-color: var(--state-danger);
+   color: var(--state-danger);
+   box-shadow: var(--shadow-pixel);
+}
+
+.btn-danger:hover:not(:disabled) {
+   background-color: var(--state-danger);
+   color: var(--text-primary);
+}
+
+/* Modificadores de Botão */
+.btn-lg {
+   min-height: 56px;
+   padding: 0 var(--space-6);
+   font-size: 14px;
+}
+
+.btn-full {
+   width: 100%;
+}
+
+
+/* ============================================================
+   6. COMPONENTES — INPUTS E FORMS
+   ============================================================ */
+.form-group {
+   display: flex;
+   flex-direction: column;
+   margin-bottom: var(--space-4);
+}
+
+.form-row {
+   display: flex;
+   gap: var(--space-4);
+   margin-bottom: var(--space-4);
+}
+
+.form-row .form-group {
+   flex: 1;
+   margin-bottom: 0;
+}
+
+.form-label {
+   font-family: var(--font-pixel);
+   font-size: 10px;
+   letter-spacing: 1px;
+   color: var(--text-secondary);
+   margin-bottom: var(--space-2);
+}
+
+.form-input {
+   width: 100%;
+   height: 48px;
+   padding: 0 var(--space-4);
+   background-color: var(--bg-elevated);
+   border: var(--border-thin) solid var(--state-disabled);
+   color: var(--text-primary);
+   font-family: var(--font-ui);
+   font-size: var(--fs-base);
+   transition: border-color var(--t-fast) steps(2),
+      box-shadow var(--t-fast) steps(2);
+}
+
+.form-input::placeholder {
+   color: var(--text-muted);
+}
+
+.form-input:focus {
+   outline: none;
+   border-color: var(--accent-spirit);
+   box-shadow:
+      4px 4px 0 var(--bg-void),
+      0 0 0 2px var(--accent-spirit);
+}
+
+.form-help {
+   font-family: var(--font-ui);
+   font-size: var(--fs-xs);
+   color: var(--text-secondary);
+   margin-top: var(--space-1);
+   margin-bottom: 0;
+}
+
+
+/* ============================================================
+   7. COMPONENTES — BADGES
+   ============================================================ */
+.badge {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   min-height: 24px;
+   padding: var(--space-1) var(--space-2);
+   font-family: var(--font-pixel);
+   font-size: 8px;
+   letter-spacing: 1px;
+   text-transform: uppercase;
+   background-color: var(--bg-surface);
+   border: var(--border-thin) solid currentColor;
+   color: var(--text-secondary);
+}
+
+.badge-gold {
+   color: var(--accent-gold);
+}
+
+.badge-blood {
+   color: var(--accent-blood-hot);
+}
+
+.badge-spirit {
+   color: var(--accent-spirit);
+}
+
+.badge-violet {
+   color: var(--accent-violet);
+}
+
+.badge-danger {
+   color: var(--state-danger);
+}
+
+
+/* ============================================================
+   8. COMPONENTES — ESTATÍSTICAS (STAT BARS)
+   ============================================================ */
+.stat {
+   display: flex;
+   align-items: center;
+   gap: var(--space-3);
+   margin-bottom: var(--space-2);
+}
+
+.stat__abbr {
+   width: 32px;
+   font-family: var(--font-pixel);
+   font-size: 10px;
+   color: var(--accent-spirit);
+}
+
+.stat__bar {
+   flex: 1;
+   height: 12px;
+   background-color: var(--bg-void);
+   border: var(--border-thin) solid var(--state-disabled);
+   overflow: hidden;
+}
+
+.stat__fill {
+   height: 100%;
+   background-color: var(--accent-spirit);
+   /* Transição em steps para parecer jogo antigo */
+   transition: width var(--t-med) steps(8);
+}
+
+.stat__value {
+   width: 24px;
+   text-align: right;
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   font-weight: 700;
+}
+
+/* Modificadores de cor para barras via HTML ID/Classes */
+.stat-hp .stat__fill,
+.meter--hp .meter__segments {
+   background-color: var(--hp-color);
+}
+
+.stat-san .stat__fill,
+.meter--san .meter__segments {
+   background-color: var(--san-color);
+}
+
+
+/* ============================================================
+   9. HEADER PRINCIPAL GERAL (Menu de RPG)
+   ============================================================ */
+.main-header {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: var(--header-height);
+   background-color: var(--bg-surface);
+   border-bottom: var(--border-thin) solid var(--bg-elevated);
+   z-index: 100;
+}
+
+.header-inner {
+   max-width: var(--container-max);
+   margin: 0 auto;
+   height: 100%;
+   padding-inline: var(--space-6);
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.brand {
+   display: flex;
+   align-items: center;
+   gap: var(--space-3);
+   font-family: var(--font-display);
+   font-size: var(--fs-lg);
+   font-weight: 700;
+   color: var(--text-primary);
+   text-transform: uppercase;
+}
+
+.brand:hover {
+   color: var(--accent-blood-hot);
+}
+
+.brand-mark {
+   font-family: var(--font-pixel);
+   color: var(--accent-blood);
+   font-size: var(--fs-md);
+}
+
+.main-nav {
+   display: flex;
+   align-items: center;
+   gap: var(--space-5);
+}
+
+.main-nav a {
+   font-family: var(--font-display);
+   font-size: var(--fs-base);
+   color: var(--text-secondary);
+   text-transform: uppercase;
+   letter-spacing: 2px;
+   padding: var(--space-2) 0;
+   border-bottom: 2px solid transparent;
+   transition: color var(--t-fast) steps(2), border-color var(--t-fast) steps(2);
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+   color: var(--text-primary);
+   border-bottom-color: var(--accent-blood);
+}
+
+
+/* ============================================================
+   10. MODAIS (Geral)
+   ============================================================ */
+.modal-overlay {
+   position: fixed;
+   inset: 0;
+   z-index: 900;
+   background: var(--bg-overlay);
+   backdrop-filter: blur(4px);
+   -webkit-backdrop-filter: blur(4px);
+   display: none;
+   align-items: center;
+   justify-content: center;
+   padding: var(--space-4);
+}
+
+.modal-overlay.active {
+   display: flex;
+   animation: fade-in var(--t-med) steps(4);
+}
+
+.modal-box {
+   position: relative;
+   width: 100%;
+   max-width: 600px;
+   background-color: var(--bg-surface);
+   border: var(--border-thin) solid var(--accent-gold);
+   padding: var(--space-6);
+   box-shadow: var(--shadow-pixel-lg);
+   animation: modal-slide-in var(--t-med) steps(6);
+}
+
+/* Pseudo elementos para cantos cortados/pixelados em caixas importantes */
+.modal-box::before,
+.modal-box::after {
+   content: '';
+   position: absolute;
+   width: 8px;
+   height: 8px;
+   background-color: var(--accent-gold);
+   pointer-events: none;
+}
+
+.modal-box::before {
+   top: -2px;
+   left: -2px;
+   box-shadow: 8px 0 0 var(--accent-gold), 0 8px 0 var(--accent-gold);
+}
+
+.modal-box::after {
+   bottom: -2px;
+   right: -2px;
+   box-shadow: -8px 0 0 var(--accent-gold), 0 -8px 0 var(--accent-gold);
+}
+
+.modal-close {
+   position: absolute;
+   top: var(--space-3);
+   right: var(--space-3);
+   width: 32px;
+   height: 32px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background: transparent;
+   border: var(--border-thin) solid var(--bg-elevated);
+   color: var(--text-secondary);
+   font-size: var(--fs-base);
+   cursor: pointer;
+   transition: border-color var(--t-fast) steps(2), color var(--t-fast) steps(2);
+   z-index: 10;
+}
+
+.modal-close:hover {
+   border-color: var(--accent-blood);
+   color: var(--accent-blood-hot);
+   background-color: rgba(200, 60, 74, 0.1);
+}
+
+.modal-title {
+   font-size: var(--fs-xl);
+   color: var(--accent-gold);
+   margin-bottom: var(--space-3);
+}
+
+
+/* ============================================================
+   11. TOAST (Notificações)
+   ============================================================ */
+.toast {
+   position: fixed;
+   bottom: var(--space-6);
+   right: var(--space-6);
+   z-index: 1000;
+   padding: var(--space-3) var(--space-5);
+   background-color: var(--bg-elevated);
+   border-left: var(--border-heavy) solid var(--accent-spirit);
+   box-shadow: var(--shadow-pixel);
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   color: var(--text-primary);
+   transform: translateY(100px);
+   opacity: 0;
+   transition: transform var(--t-med) steps(4), opacity var(--t-med) steps(4);
+}
+
+.toast.show {
+   transform: translateY(0);
+   opacity: 1;
+}
+
+
+/* ============================================================
+   12. ANIMAÇÕES GLOBAIS
+   ============================================================ */
+@keyframes fade-in {
+   from {
+      opacity: 0;
+   }
+
+   to {
+      opacity: 1;
+   }
+}
+
+@keyframes modal-slide-in {
+   from {
+      opacity: 0;
+      transform: translateY(16px);
+   }
+
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
+}
+
+/* Ocultar elementos via atributo HTML global (se não estiver em um framework moderno) */
+[hidden] {
+   display: none !important;
+}
+
+
+/* ============================================================
+   13. MEDIA QUERIES GLOBAIS (Mobile base)
+   ============================================================ */
+@media (max-width: 768px) {
+   :root {
+      --fs-xl: 24px;
+      --fs-2xl: 32px;
+      --fs-hero: 36px;
+      --header-height: 64px;
+   }
+
+   .container {
+      padding-inline: var(--space-4);
+   }
+
+   .main-nav {
+      display: none;
+      /* Em um cenário real, haveria um botão hambúrguer aqui */
+   }
+
+   .modal-box {
+      margin: var(--space-4);
+      padding: var(--space-5);
+   }
+}

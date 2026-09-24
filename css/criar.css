@@ -1,0 +1,711 @@
+﻿/* ============================================================
+   CAÇADOR SOLITÁRIO — criar.css
+   Wizard de criação de personagem: stepper, atributos, cards, preview
+   ============================================================ */
+
+
+/* ============================================================
+   1. PÁGINA
+   ============================================================ */
+.pagina-criar {
+   background: var(--bg-void);
+}
+
+.create-area {
+   padding-top: calc(var(--header-height) + var(--space-7));
+   padding-bottom: var(--space-9);
+   min-height: 100vh;
+}
+
+.create-header {
+   max-width: 680px;
+   margin-bottom: var(--space-6);
+}
+
+.create-title {
+   font-size: var(--fs-xl);
+   letter-spacing: 1px;
+   margin-bottom: var(--space-2);
+   text-shadow: var(--shadow-pixel);
+}
+
+.create-subtitle {
+   font-family: var(--font-ui);
+   font-size: var(--fs-base);
+   color: var(--text-secondary);
+}
+
+
+/* ============================================================
+   2. STEPPER
+   ============================================================ */
+.stepper {
+   margin-bottom: var(--space-6);
+   overflow-x: auto;
+}
+
+.stepper-list {
+   display: flex;
+   align-items: center;
+   min-width: max-content;
+}
+
+.stepper-item {
+   display: flex;
+   align-items: center;
+   gap: var(--space-3);
+   opacity: 0.45;
+   transition: opacity var(--t-fast) steps(2);
+}
+
+.stepper-item.active,
+.stepper-item.done {
+   opacity: 1;
+}
+
+.stepper-num {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 32px;
+   height: 32px;
+   flex-shrink: 0;
+   font-family: var(--font-pixel);
+   font-size: 11px;
+   color: var(--text-secondary);
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--state-disabled);
+}
+
+.stepper-item.active .stepper-num {
+   color: var(--bg-void);
+   background: var(--accent-blood);
+   border-color: var(--accent-blood-hot);
+   box-shadow: 0 0 0 3px rgba(200, 60, 74, 0.25);
+}
+
+.stepper-item.done .stepper-num {
+   color: var(--bg-void);
+   background: var(--accent-gold);
+   border-color: var(--accent-gold);
+}
+
+.stepper-item.done .stepper-num::after {
+   content: '✓';
+}
+
+.stepper-label {
+   font-family: var(--font-display);
+   font-size: var(--fs-sm);
+   font-weight: 600;
+   letter-spacing: 1px;
+   text-transform: uppercase;
+   color: var(--text-secondary);
+   white-space: nowrap;
+}
+
+.stepper-item.active .stepper-label {
+   color: var(--text-primary);
+}
+
+.stepper-item+.stepper-item::before {
+   content: '';
+   display: block;
+   width: 32px;
+   height: var(--border-thin);
+   background: var(--bg-elevated);
+   margin: 0 var(--space-3);
+}
+
+
+/* ============================================================
+   3. LAYOUT (coluna principal + sidebar)
+   ============================================================ */
+.create-layout {
+   display: grid;
+   grid-template-columns: 1fr 340px;
+   gap: var(--space-6);
+   align-items: start;
+}
+
+.create-main {
+   padding: var(--space-6);
+   background: var(--bg-surface);
+   border: var(--border-thin) solid var(--bg-elevated);
+   box-shadow: var(--shadow-pixel);
+}
+
+
+/* ============================================================
+   4. PAINÉIS DE ETAPA
+   ============================================================ */
+.step-panel {
+   display: none;
+   animation: fade-in var(--t-med) steps(4);
+}
+
+.step-panel.active {
+   display: block;
+}
+
+.step-title {
+   font-size: var(--fs-lg);
+   margin-bottom: var(--space-2);
+}
+
+.step-desc {
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   color: var(--text-secondary);
+   margin-bottom: var(--space-6);
+}
+
+.step-desc strong {
+   color: var(--accent-gold);
+}
+
+
+/* ============================================================
+   5. ETAPA 2 — CONTADOR DE PONTOS
+   ============================================================ */
+.points-counter {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: var(--space-4) var(--space-5);
+   margin-bottom: var(--space-6);
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--accent-spirit);
+   box-shadow: var(--shadow-pixel);
+}
+
+.points-counter-main {
+   display: flex;
+   align-items: baseline;
+   gap: var(--space-2);
+}
+
+.points-counter-value {
+   font-family: var(--font-pixel);
+   font-size: 24px;
+   color: var(--accent-spirit);
+}
+
+.points-counter.is-zero .points-counter-value {
+   color: var(--state-success);
+}
+
+.points-counter.is-over .points-counter-value {
+   color: var(--state-danger);
+}
+
+.points-counter-label {
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   color: var(--text-secondary);
+}
+
+.points-counter-secondary {
+   display: flex;
+   gap: var(--space-4);
+   font-family: var(--font-ui);
+   font-size: var(--fs-xs);
+   color: var(--text-muted);
+}
+
+.points-counter-secondary strong {
+   color: var(--text-secondary);
+}
+
+
+/* ============================================================
+   6. EDITOR DE ATRIBUTOS
+   ============================================================ */
+.attributes-editor {
+   display: flex;
+   flex-direction: column;
+   gap: var(--space-3);
+   margin-bottom: var(--space-6);
+}
+
+.attribute-editor-row {
+   display: grid;
+   grid-template-columns: 80px 1fr auto;
+   align-items: center;
+   gap: var(--space-4);
+   padding: var(--space-3) var(--space-4);
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--bg-void);
+}
+
+.attribute-editor-row__label {
+   display: flex;
+   flex-direction: column;
+   gap: 2px;
+}
+
+.attribute-editor-row__abbr {
+   font-family: var(--font-pixel);
+   font-size: 12px;
+   letter-spacing: 1px;
+   color: var(--accent-spirit);
+}
+
+.attribute-editor-row__name {
+   font-family: var(--font-ui);
+   font-size: 10px;
+   color: var(--text-muted);
+}
+
+.attribute-editor-row__bar {
+   height: 10px;
+   background: var(--bg-void);
+   border: var(--border-thin) solid var(--state-disabled);
+   overflow: hidden;
+}
+
+.attribute-editor-row__fill {
+   height: 100%;
+   background: var(--accent-spirit);
+   transition: width var(--t-fast) steps(6);
+}
+
+.attribute-editor-row__controls {
+   display: flex;
+   align-items: center;
+   gap: var(--space-2);
+}
+
+.attr-btn {
+   width: 32px;
+   height: 32px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-family: var(--font-pixel);
+   font-size: 14px;
+   color: var(--text-primary);
+   background: var(--bg-void);
+   border: var(--border-thin) solid var(--state-disabled);
+   cursor: pointer;
+   transition: border-color var(--t-fast) steps(2),
+      transform var(--t-fast) steps(1);
+}
+
+.attr-btn:hover:not(:disabled) {
+   border-color: var(--accent-spirit);
+}
+
+.attr-btn:active:not(:disabled) {
+   transform: translate(2px, 2px);
+}
+
+.attr-btn:disabled {
+   opacity: 0.35;
+   cursor: not-allowed;
+}
+
+.attribute-editor-row__value {
+   min-width: 28px;
+   text-align: center;
+   font-family: var(--font-ui);
+   font-size: var(--fs-md);
+   font-weight: 700;
+   color: var(--text-primary);
+}
+
+
+/* ============================================================
+   7. PREVIEW DE DERIVADOS
+   ============================================================ */
+.preview-block {
+   padding: var(--space-5);
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--bg-void);
+}
+
+.preview-title {
+   font-family: var(--font-pixel);
+   font-size: 10px;
+   letter-spacing: 2px;
+   text-transform: uppercase;
+   color: var(--accent-gold);
+   margin-bottom: var(--space-4);
+}
+
+.preview-grid {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: var(--space-4);
+}
+
+.preview-item {
+   display: flex;
+   align-items: center;
+   gap: var(--space-3);
+}
+
+.preview-icon {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 36px;
+   height: 36px;
+   flex-shrink: 0;
+   font-size: var(--fs-md);
+   background: var(--bg-void);
+   border: var(--border-thin) solid var(--state-disabled);
+}
+
+.preview-icon-hp {
+   color: var(--hp-color);
+   border-color: var(--hp-color);
+}
+
+.preview-icon-san {
+   color: var(--san-color);
+   border-color: var(--san-color);
+}
+
+.preview-icon-atk {
+   color: var(--accent-blood-hot);
+   border-color: var(--accent-blood-hot);
+}
+
+.preview-icon-def {
+   color: var(--accent-spirit);
+   border-color: var(--accent-spirit);
+}
+
+.preview-item>div {
+   display: flex;
+   flex-direction: column;
+}
+
+.preview-label {
+   font-family: var(--font-ui);
+   font-size: 10px;
+   color: var(--text-muted);
+}
+
+.preview-value {
+   font-family: var(--font-ui);
+   font-size: var(--fs-md);
+   font-weight: 700;
+   color: var(--text-primary);
+}
+
+
+/* ============================================================
+   8. CARDS DE SELEÇÃO (respiração / equipamento)
+   ============================================================ */
+.cards-select {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: var(--space-4);
+}
+
+.select-card {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   gap: var(--space-3);
+   padding: var(--space-5);
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--state-disabled);
+   cursor: pointer;
+   text-align: left;
+   transition: border-color var(--t-fast) steps(2),
+      transform var(--t-fast) steps(1),
+      box-shadow var(--t-fast) steps(1);
+}
+
+.select-card:hover {
+   border-color: var(--accent-spirit);
+   transform: translateY(-2px);
+}
+
+.select-card.selected {
+   border-color: var(--accent-gold);
+   box-shadow: 0 0 0 2px rgba(224, 182, 90, 0.3), var(--shadow-pixel);
+   background: rgba(224, 182, 90, 0.06);
+}
+
+.select-card.selected::after {
+   content: '✓';
+   position: absolute;
+   top: var(--space-3);
+   right: var(--space-3);
+   width: 24px;
+   height: 24px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-family: var(--font-pixel);
+   font-size: 11px;
+   color: var(--bg-void);
+   background: var(--accent-gold);
+}
+
+.select-card__icon {
+   font-size: 26px;
+   color: var(--accent-spirit);
+}
+
+.select-card__name {
+   font-family: var(--font-display);
+   font-size: var(--fs-md);
+   font-weight: 700;
+   color: var(--text-primary);
+}
+
+.select-card__desc {
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   line-height: 1.5;
+   color: var(--text-secondary);
+}
+
+.select-card__bonus {
+   display: flex;
+   flex-wrap: wrap;
+   gap: var(--space-2);
+   margin-top: var(--space-1);
+}
+
+
+/* ============================================================
+   9. RESUMO (etapa 5)
+   ============================================================ */
+.summary {
+   display: flex;
+   flex-direction: column;
+   gap: var(--space-4);
+}
+
+.summary-block {
+   padding: var(--space-5);
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--bg-void);
+}
+
+.summary-block__title {
+   font-family: var(--font-pixel);
+   font-size: 9px;
+   letter-spacing: 2px;
+   text-transform: uppercase;
+   color: var(--accent-gold);
+   margin-bottom: var(--space-3);
+}
+
+.summary-row {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: var(--space-2) 0;
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+}
+
+.summary-row+.summary-row {
+   border-top: 1px dashed var(--bg-void);
+}
+
+.summary-row__label {
+   color: var(--text-secondary);
+}
+
+.summary-row__value {
+   font-weight: 700;
+   color: var(--text-primary);
+}
+
+
+/* ============================================================
+   10. NAVEGAÇÃO ENTRE ETAPAS
+   ============================================================ */
+.step-nav {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-top: var(--space-7);
+   padding-top: var(--space-5);
+   border-top: var(--border-thin) solid var(--bg-elevated);
+}
+
+
+/* ============================================================
+   11. SIDEBAR — PREVIEW DO PERSONAGEM
+   ============================================================ */
+.create-sidebar {
+   position: sticky;
+   top: calc(var(--header-height) + var(--space-5));
+   display: flex;
+   flex-direction: column;
+   gap: var(--space-4);
+}
+
+.preview-card {
+   padding: var(--space-5);
+   background: var(--bg-surface);
+   border: var(--border-thin) solid var(--accent-gold);
+   box-shadow: var(--shadow-pixel-lg);
+}
+
+.preview-card-header {
+   text-align: center;
+   margin-bottom: var(--space-4);
+}
+
+.preview-card-label {
+   font-family: var(--font-pixel);
+   font-size: 8px;
+   letter-spacing: 3px;
+   color: var(--accent-gold);
+}
+
+.preview-portrait {
+   width: 100%;
+   aspect-ratio: 1;
+   margin-bottom: var(--space-4);
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--bg-void);
+   overflow: hidden;
+}
+
+.preview-portrait-img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   image-rendering: pixelated;
+}
+
+.preview-name {
+   font-family: var(--font-display);
+   font-size: var(--fs-lg);
+   font-weight: 700;
+   text-align: center;
+   color: var(--text-primary);
+   margin-bottom: var(--space-1);
+}
+
+.preview-role {
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   text-align: center;
+   color: var(--accent-spirit);
+   margin-bottom: var(--space-5);
+}
+
+.preview-stats {
+   display: flex;
+   flex-direction: column;
+   gap: var(--space-2);
+   margin-bottom: var(--space-5);
+   padding-bottom: var(--space-5);
+   border-bottom: var(--border-thin) solid var(--bg-elevated);
+}
+
+.preview-meters {
+   display: flex;
+   flex-direction: column;
+   gap: var(--space-3);
+}
+
+/* --- Aviso lateral --- */
+.sidebar-info {
+   padding: var(--space-4);
+   background: var(--bg-surface);
+   border-left: var(--border-heavy) solid var(--accent-spirit);
+}
+
+.sidebar-hint {
+   font-family: var(--font-ui);
+   font-size: var(--fs-xs);
+   line-height: 1.6;
+   color: var(--text-secondary);
+}
+
+.sidebar-hint strong {
+   color: var(--accent-spirit);
+}
+
+
+/* ============================================================
+   12. RESPONSIVO
+   ============================================================ */
+@media (max-width: 1024px) {
+   .create-layout {
+      grid-template-columns: 1fr;
+   }
+
+   .create-sidebar {
+      position: static;
+      order: -1;
+   }
+
+   .preview-card {
+      max-width: 340px;
+      margin: 0 auto;
+   }
+}
+
+@media (max-width: 768px) {
+   .create-main {
+      padding: var(--space-4);
+   }
+
+   .cards-select {
+      grid-template-columns: 1fr;
+   }
+
+   .preview-grid {
+      grid-template-columns: 1fr;
+   }
+
+   .attribute-editor-row {
+      grid-template-columns: 64px 1fr auto;
+      gap: var(--space-2);
+   }
+
+   .step-nav {
+      flex-wrap: wrap;
+      gap: var(--space-3);
+   }
+
+   .step-nav .btn {
+      flex: 1;
+      min-width: 140px;
+   }
+}
+
+@media (max-width: 480px) {
+   .stepper-label {
+      display: none;
+   }
+
+   .stepper-item+.stepper-item::before {
+      width: 16px;
+      margin: 0 var(--space-2);
+   }
+
+   .attribute-editor-row {
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+         "label controls"
+         "bar bar";
+   }
+
+   .attribute-editor-row__label {
+      grid-area: label;
+   }
+
+   .attribute-editor-row__controls {
+      grid-area: controls;
+   }
+
+   .attribute-editor-row__bar {
+      grid-area: bar;
+      margin-top: var(--space-2);
+   }
+}

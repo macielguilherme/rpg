@@ -1,0 +1,373 @@
+﻿/* ============================================================
+   CAÇADOR SOLITÁRIO — personagens.css
+   Bestiário: grid de Hashiras e Onis + modal de detalhes
+   ============================================================ */
+
+
+/* ============================================================
+   1. PÁGINA
+   ============================================================ */
+.pagina-personagens {
+   background: var(--bg-void);
+}
+
+.page-personagens {
+   padding-top: calc(var(--header-height) + var(--space-8));
+   padding-bottom: var(--space-9);
+   min-height: 100vh;
+}
+
+
+/* ============================================================
+   2. HERO / CABEÇALHO
+   ============================================================ */
+.page-hero {
+   max-width: 680px;
+   margin-bottom: var(--space-7);
+}
+
+.page-title {
+   font-size: var(--fs-2xl);
+   letter-spacing: 2px;
+   margin-bottom: var(--space-3);
+   text-shadow: var(--shadow-pixel);
+}
+
+.page-subtitle {
+   font-family: var(--font-ui);
+   font-size: var(--fs-md);
+   line-height: 1.6;
+   color: var(--text-secondary);
+   max-width: 60ch;
+}
+
+
+/* ============================================================
+   3. ABAS (Hashiras / Onis)
+   ============================================================ */
+.tabs {
+   display: inline-flex;
+   gap: 2px;
+   margin-bottom: var(--space-6);
+   background: var(--bg-surface);
+   border: var(--border-thin) solid var(--bg-elevated);
+   padding: 4px;
+}
+
+.tab {
+   padding: var(--space-3) var(--space-6);
+   font-family: var(--font-display);
+   font-size: var(--fs-sm);
+   font-weight: 700;
+   letter-spacing: 2px;
+   text-transform: uppercase;
+   color: var(--text-secondary);
+   background: transparent;
+   border: none;
+   cursor: pointer;
+   transition: color var(--t-fast) steps(2),
+      background-color var(--t-fast) steps(2);
+}
+
+.tab:hover {
+   color: var(--text-primary);
+}
+
+.tab.active {
+   color: var(--bg-void);
+   background: var(--accent-gold);
+}
+
+.tab:focus-visible {
+   outline: var(--border-thin) solid var(--accent-spirit);
+   outline-offset: 2px;
+}
+
+
+/* ============================================================
+   4. GRID DE PERSONAGENS
+   ============================================================ */
+.characters-grid {
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   gap: var(--space-5);
+   animation: fade-in var(--t-slow) steps(6);
+}
+
+
+/* ============================================================
+   5. CARD DE PERSONAGEM
+   ============================================================ */
+.character-card {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   background: var(--bg-surface);
+   border: var(--border-thin) solid var(--bg-elevated);
+   padding: var(--space-4);
+   box-shadow: var(--shadow-pixel);
+   cursor: pointer;
+   transition: border-color var(--t-fast) steps(2),
+      transform var(--t-fast) steps(1),
+      box-shadow var(--t-fast) steps(1);
+}
+
+.character-card:hover,
+.character-card:focus-visible {
+   border-color: var(--accent-blood);
+   transform: translateY(-4px);
+   box-shadow: 4px 8px 0 var(--bg-void);
+}
+
+.character-card:hover .character-card__image,
+.character-card:focus-visible .character-card__image {
+   transform: translateY(-4px);
+}
+
+.character-card__media {
+   position: relative;
+   overflow: hidden;
+   margin: calc(var(--space-4) * -1) calc(var(--space-4) * -1) 0;
+   height: 240px;
+   background: var(--bg-elevated);
+}
+
+.character-card__image {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   image-rendering: pixelated;
+   transition: transform var(--t-fast) steps(2);
+}
+
+.character-card__type-badge {
+   position: absolute;
+   top: var(--space-2);
+   right: var(--space-2);
+   z-index: 2;
+}
+
+.character-card__body {
+   padding-top: var(--space-4);
+   display: flex;
+   flex-direction: column;
+   gap: var(--space-2);
+   flex: 1;
+}
+
+.character-card__name {
+   font-family: var(--font-display);
+   font-size: var(--fs-lg);
+   font-weight: 700;
+   color: var(--text-primary);
+   line-height: 1.2;
+}
+
+.character-card__role {
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   color: var(--text-secondary);
+   margin-bottom: var(--space-2);
+}
+
+.character-card__stats {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: var(--space-2) var(--space-3);
+   margin-top: auto;
+   padding-top: var(--space-3);
+   border-top: var(--border-thin) solid var(--bg-elevated);
+}
+
+.character-card__stat {
+   display: flex;
+   align-items: center;
+   gap: var(--space-1);
+   font-family: var(--font-pixel);
+   font-size: 9px;
+   letter-spacing: 1px;
+   color: var(--text-secondary);
+}
+
+.character-card__stat strong {
+   color: var(--accent-spirit);
+   font-family: var(--font-pixel);
+}
+
+.character-card__hp {
+   display: flex;
+   align-items: center;
+   gap: var(--space-1);
+   margin-top: var(--space-2);
+}
+
+.character-card__hp-bar {
+   flex: 1;
+   height: 8px;
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--bg-void);
+   overflow: hidden;
+}
+
+.character-card__hp-fill {
+   height: 100%;
+   background: var(--hp-color);
+}
+
+/* Onis: acento diferenciado */
+.character-card--oni:hover,
+.character-card--oni:focus-visible {
+   border-color: var(--accent-violet);
+}
+
+.character-card--oni .character-card__hp-fill {
+   background: var(--accent-violet);
+}
+
+
+/* ============================================================
+   6. MODAL DE PERSONAGEM
+   ============================================================ */
+.character-modal {
+   display: grid;
+   grid-template-columns: 320px 1fr;
+   gap: var(--space-6);
+}
+
+.character-modal__media {
+   position: relative;
+}
+
+.character-modal__image {
+   width: 100%;
+   height: 420px;
+   object-fit: cover;
+   image-rendering: pixelated;
+   border: var(--border-thin) solid var(--bg-elevated);
+}
+
+.character-modal__media .badge {
+   position: absolute;
+   top: var(--space-3);
+   left: var(--space-3);
+   background: var(--bg-void);
+}
+
+.character-modal__info {
+   display: flex;
+   flex-direction: column;
+   min-width: 0;
+}
+
+.character-modal__name {
+   font-size: var(--fs-xl);
+   letter-spacing: 1px;
+   margin-bottom: var(--space-1);
+}
+
+.character-modal__role {
+   font-family: var(--font-ui);
+   font-size: var(--fs-base);
+   color: var(--accent-spirit);
+   margin-bottom: var(--space-5);
+}
+
+.character-modal__stats {
+   display: flex;
+   flex-direction: column;
+   gap: var(--space-3);
+   margin-bottom: var(--space-6);
+   padding: var(--space-4);
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--bg-void);
+}
+
+.character-modal__section {
+   margin-bottom: var(--space-5);
+}
+
+.character-modal__section h4 {
+   font-family: var(--font-pixel);
+   font-size: 10px;
+   letter-spacing: 2px;
+   text-transform: uppercase;
+   color: var(--accent-gold);
+   margin-bottom: var(--space-2);
+}
+
+.character-modal__section p {
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   line-height: 1.7;
+   color: var(--text-secondary);
+}
+
+.character-modal__abilities {
+   display: flex;
+   flex-direction: column;
+   gap: var(--space-2);
+}
+
+.character-modal__abilities li {
+   position: relative;
+   padding-left: var(--space-5);
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   color: var(--text-secondary);
+   line-height: 1.5;
+}
+
+.character-modal__abilities li::before {
+   content: '◆';
+   position: absolute;
+   left: 0;
+   top: 0;
+   color: var(--accent-blood-hot);
+   font-size: 10px;
+}
+
+
+/* ============================================================
+   7. RESPONSIVO
+   ============================================================ */
+@media (max-width: 1100px) {
+   .characters-grid {
+      grid-template-columns: repeat(3, 1fr);
+   }
+}
+
+@media (max-width: 900px) {
+   .character-modal {
+      grid-template-columns: 1fr;
+   }
+
+   .character-modal__image {
+      height: 320px;
+   }
+}
+
+@media (max-width: 768px) {
+   .characters-grid {
+      grid-template-columns: repeat(2, 1fr);
+   }
+
+   .page-title {
+      font-size: var(--fs-xl);
+   }
+}
+
+@media (max-width: 520px) {
+   .characters-grid {
+      grid-template-columns: 1fr;
+   }
+
+   .tabs {
+      width: 100%;
+   }
+
+   .tab {
+      flex: 1;
+      padding: var(--space-3);
+      font-size: 12px;
+   }
+}

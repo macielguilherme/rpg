@@ -1,0 +1,477 @@
+﻿/* ============================================================
+   CAÇADOR SOLITÁRIO — historia.css
+   Crônica de Kagetsumi: introdução + timeline + modal de capítulo
+   ============================================================ */
+
+
+/* ============================================================
+   1. PÁGINA
+   ============================================================ */
+.pagina-historia {
+   background: var(--bg-void);
+}
+
+.historia-area {
+   padding-top: calc(var(--header-height) + var(--space-8));
+   padding-bottom: var(--space-9);
+   min-height: 100vh;
+}
+
+
+/* ============================================================
+   2. CABEÇALHO
+   ============================================================ */
+.historia-header {
+   max-width: 680px;
+   margin-bottom: var(--space-7);
+}
+
+.historia-title {
+   font-size: var(--fs-2xl);
+   letter-spacing: 2px;
+   margin-bottom: var(--space-3);
+   text-shadow: var(--shadow-pixel);
+}
+
+.historia-subtitle {
+   font-family: var(--font-ui);
+   font-size: var(--fs-md);
+   line-height: 1.6;
+   color: var(--text-secondary);
+}
+
+
+/* ============================================================
+   3. INTRODUÇÃO
+   ============================================================ */
+.historia-intro {
+   margin-bottom: var(--space-9);
+}
+
+.intro-panel {
+   position: relative;
+   max-width: 780px;
+   padding: var(--space-6);
+   background: var(--bg-surface);
+   border-left: var(--border-heavy) solid var(--accent-gold);
+   box-shadow: var(--shadow-pixel);
+}
+
+.intro-text {
+   font-family: var(--font-ui);
+   font-size: var(--fs-base);
+   line-height: 1.8;
+   color: var(--text-secondary);
+}
+
+.intro-text+.intro-text {
+   margin-top: var(--space-4);
+}
+
+.intro-text strong {
+   font-weight: 700;
+}
+
+
+/* ============================================================
+   4. TÍTULO DE SEÇÃO
+   ============================================================ */
+.section-heading {
+   display: flex;
+   align-items: center;
+   gap: var(--space-4);
+   margin-bottom: var(--space-7);
+}
+
+.section-heading-title {
+   font-size: var(--fs-xl);
+   letter-spacing: 1px;
+   white-space: nowrap;
+}
+
+.section-heading-divider {
+   flex: 1;
+   height: var(--border-thin);
+   background: var(--bg-elevated);
+   position: relative;
+}
+
+.section-heading-divider::after {
+   content: '';
+   position: absolute;
+   right: 0;
+   top: -3px;
+   width: 8px;
+   height: 8px;
+   background: var(--accent-gold);
+}
+
+
+/* ============================================================
+   5. TIMELINE
+   ============================================================ */
+.timeline-section {
+   margin-bottom: var(--space-9);
+}
+
+.timeline {
+   position: relative;
+   padding-left: var(--space-7);
+}
+
+.timeline::before {
+   content: '';
+   position: absolute;
+   left: 7px;
+   top: 8px;
+   bottom: 8px;
+   width: var(--border-thin);
+   background: var(--state-disabled);
+}
+
+.timeline-item {
+   position: relative;
+   padding-bottom: var(--space-8);
+   cursor: pointer;
+}
+
+.timeline-item:last-child {
+   padding-bottom: 0;
+}
+
+/* Marcador (bolinha) */
+.timeline-item::before {
+   content: '';
+   position: absolute;
+   left: -37px;
+   top: 6px;
+   width: 16px;
+   height: 16px;
+   background: var(--accent-blood);
+   border: var(--border-thin) solid var(--bg-void);
+   box-shadow: 0 0 0 2px var(--accent-blood);
+   transition: width var(--t-fast) steps(2),
+      height var(--t-fast) steps(2),
+      left var(--t-fast) steps(2),
+      top var(--t-fast) steps(2);
+   z-index: 1;
+}
+
+.timeline-item:hover::before,
+.timeline-item:focus-visible::before {
+   width: 20px;
+   height: 20px;
+   left: -39px;
+   top: 4px;
+}
+
+/* Capítulo atual: dourado */
+.timeline-item.current::before {
+   background: var(--accent-gold);
+   box-shadow: 0 0 0 2px var(--accent-gold), 0 0 16px rgba(224, 182, 90, 0.5);
+}
+
+/* Capítulo bloqueado */
+.timeline-item.locked {
+   cursor: not-allowed;
+   opacity: 0.5;
+}
+
+.timeline-item.locked::before {
+   background: var(--state-disabled);
+   box-shadow: 0 0 0 2px var(--state-disabled);
+}
+
+.timeline-item__card {
+   padding: var(--space-5);
+   background: var(--bg-surface);
+   border: var(--border-thin) solid var(--bg-elevated);
+   box-shadow: var(--shadow-pixel);
+   transition: border-color var(--t-fast) steps(2),
+      transform var(--t-fast) steps(1);
+}
+
+.timeline-item:hover .timeline-item__card,
+.timeline-item:focus-visible .timeline-item__card {
+   border-color: var(--accent-blood);
+   transform: translateX(4px);
+}
+
+.timeline-item.current .timeline-item__card {
+   border-color: var(--accent-gold);
+}
+
+.timeline-item__meta {
+   display: flex;
+   align-items: center;
+   gap: var(--space-3);
+   margin-bottom: var(--space-2);
+}
+
+.timeline-item__number {
+   font-family: var(--font-pixel);
+   font-size: 10px;
+   letter-spacing: 1px;
+   color: var(--accent-blood-hot);
+}
+
+.timeline-item__date {
+   font-family: var(--font-ui);
+   font-size: var(--fs-xs);
+   color: var(--text-muted);
+}
+
+.timeline-item__title {
+   font-family: var(--font-display);
+   font-size: var(--fs-lg);
+   font-weight: 700;
+   color: var(--text-primary);
+   margin-bottom: var(--space-2);
+}
+
+.timeline-item__excerpt {
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   line-height: 1.6;
+   color: var(--text-secondary);
+}
+
+.timeline-item__location {
+   display: inline-flex;
+   align-items: center;
+   gap: var(--space-1);
+   margin-top: var(--space-3);
+   font-family: var(--font-pixel);
+   font-size: 8px;
+   letter-spacing: 1px;
+   text-transform: uppercase;
+   color: var(--accent-spirit);
+}
+
+
+/* ============================================================
+   6. PROGRESSO DA HISTÓRIA
+   ============================================================ */
+.progress-section {
+   margin-top: var(--space-9);
+}
+
+.progress-panel {
+   max-width: 680px;
+   padding: var(--space-6);
+   background: var(--bg-surface);
+   border: var(--border-thin) solid var(--accent-gold);
+   box-shadow: var(--shadow-pixel-lg);
+}
+
+.progress-panel__header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: var(--space-4);
+}
+
+.progress-panel__title {
+   font-family: var(--font-display);
+   font-size: var(--fs-lg);
+}
+
+.progress-track {
+   height: 16px;
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--bg-void);
+   margin-bottom: var(--space-3);
+   overflow: hidden;
+}
+
+.progress-fill {
+   height: 100%;
+   background: repeating-linear-gradient(45deg,
+         var(--accent-gold) 0,
+         var(--accent-gold) 8px,
+         #c99a45 8px,
+         #c99a45 16px);
+   transition: width var(--t-slow) steps(10);
+}
+
+.progress-text {
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   color: var(--text-secondary);
+   margin-bottom: var(--space-5);
+}
+
+.progress-actions {
+   display: flex;
+   justify-content: flex-end;
+}
+
+
+/* ============================================================
+   7. MODAL DE CAPÍTULO
+   ============================================================ */
+.modal-box--chapter {
+   max-width: 760px;
+   padding: 0;
+   overflow: hidden;
+}
+
+.chapter-header {
+   padding: var(--space-6) var(--space-6) var(--space-4);
+}
+
+.chapter-meta {
+   display: flex;
+   align-items: center;
+   gap: var(--space-3);
+   margin-bottom: var(--space-2);
+}
+
+.chapter-number {
+   font-family: var(--font-pixel);
+   font-size: 10px;
+   letter-spacing: 1px;
+   color: var(--accent-blood-hot);
+}
+
+.chapter-date {
+   font-family: var(--font-ui);
+   font-size: var(--fs-xs);
+   color: var(--text-muted);
+}
+
+.chapter-title {
+   font-size: var(--fs-xl);
+   margin-bottom: var(--space-2);
+}
+
+.chapter-location {
+   font-family: var(--font-pixel);
+   font-size: 9px;
+   letter-spacing: 1px;
+   text-transform: uppercase;
+   color: var(--accent-spirit);
+}
+
+.chapter-image-wrapper {
+   position: relative;
+   height: 280px;
+   overflow: hidden;
+   border-top: var(--border-thin) solid var(--bg-elevated);
+   border-bottom: var(--border-thin) solid var(--bg-elevated);
+}
+
+.chapter-image {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   image-rendering: pixelated;
+}
+
+.chapter-image-overlay {
+   position: absolute;
+   inset: 0;
+   background: linear-gradient(to top, var(--bg-surface) 0%, transparent 40%);
+}
+
+.chapter-content {
+   padding: var(--space-6);
+   display: flex;
+   flex-direction: column;
+   gap: var(--space-4);
+}
+
+.chapter-content p {
+   font-family: var(--font-ui);
+   font-size: var(--fs-base);
+   line-height: 1.8;
+   color: var(--text-secondary);
+}
+
+.chapter-footer {
+   padding: var(--space-5) var(--space-6) var(--space-6);
+   border-top: var(--border-thin) solid var(--bg-elevated);
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: var(--space-4);
+   flex-wrap: wrap;
+}
+
+.chapter-characters__label {
+   display: block;
+   font-family: var(--font-pixel);
+   font-size: 8px;
+   letter-spacing: 2px;
+   color: var(--text-muted);
+   margin-bottom: var(--space-2);
+}
+
+.chapter-characters__list {
+   display: flex;
+   flex-wrap: wrap;
+   gap: var(--space-2);
+}
+
+.chapter-chip {
+   display: inline-flex;
+   align-items: center;
+   gap: var(--space-1);
+   padding: 4px var(--space-2);
+   font-family: var(--font-ui);
+   font-size: var(--fs-xs);
+   color: var(--text-primary);
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--bg-void);
+}
+
+.chapter-nav {
+   display: flex;
+   gap: var(--space-2);
+}
+
+
+/* ============================================================
+   8. RESPONSIVO
+   ============================================================ */
+@media (max-width: 768px) {
+   .historia-title {
+      font-size: var(--fs-xl);
+   }
+
+   .timeline {
+      padding-left: var(--space-6);
+   }
+
+   .timeline-item::before {
+      left: -33px;
+   }
+
+   .timeline-item:hover::before,
+   .timeline-item:focus-visible::before {
+      left: -35px;
+   }
+
+   .chapter-footer {
+      flex-direction: column;
+      align-items: stretch;
+   }
+
+   .chapter-nav {
+      justify-content: space-between;
+   }
+}
+
+@media (max-width: 480px) {
+   .intro-panel {
+      padding: var(--space-4);
+   }
+
+   .timeline-item__card {
+      padding: var(--space-4);
+   }
+
+   .chapter-image-wrapper {
+      height: 180px;
+   }
+}

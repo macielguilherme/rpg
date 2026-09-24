@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>História — Caçador Solitário</title>
+
+    <link rel="icon" type="image/svg+xml" href="assets/icons/ui/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Pixelify+Sans:wght@400;600;700&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/historia.css">
+</head>
+
+<body class="pagina-historia">
+
+    <!-- ============================================================
+     HEADER
+     ============================================================ -->
+    <header class="main-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark">火</span>
+                <span>Caçador Solitário</span>
+            </a>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="personagens.html">Personagens</a></li>
+                    <li><a href="historia.html">História</a></li>
+                    <li><a href="mapa.html">Mapa</a></li>
+                    <li><a href="ficha.html">Ficha</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================================
+     CONTEÚDO
+     ============================================================ -->
+    <main class="historia-area">
+        <div class="container">
+
+            <!-- Cabeçalho -->
+            <div class="historia-header">
+                <span class="eyebrow">Crônica de Kagetsumi</span>
+                <h1 class="historia-title">História</h1>
+                <p class="historia-subtitle">
+                    Os registros da ilha — de sua origem silenciosa até os dias sombrios que virão.
+                </p>
+            </div>
+
+            <!-- Introdução -->
+            <section class="historia-intro">
+                <div class="intro-panel">
+                    <p class="intro-text">
+                        Há mais de mil anos, a ilha de Kagetsumi era um lugar de paz.
+                        Os homens viviam em harmonia com a terra, sem conhecer o mal
+                        que dormia sob suas montanhas.
+                    </p>
+                    <p class="intro-text">
+                        Quando o <strong class="text-blood">Fruto Negro</strong> foi descoberto
+                        nas profundezas da ilha, a escuridão despertou. Criaturas corrompidas
+                        começaram a surgir. E com elas, a guerra.
+                    </p>
+                    <p class="intro-text">
+                        Foram forjadas as primeiras <strong class="text-gold">lâminas Nichirin</strong>.
+                        Erguidos os primeiros <strong class="text-spirit">Hashiras</strong>.
+                        Assim começou a era dos caçadores.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ============================================================
+             TIMELINE
+             ============================================================ -->
+            <section class="timeline-section">
+                <div class="section-heading">
+                    <h2 class="section-heading-title">Linha do Tempo</h2>
+                    <div class="section-heading-divider"></div>
+                </div>
+
+                <div class="timeline" id="timeline">
+                    <!-- Itens entram via JS -->
+                </div>
+            </section>
+
+            <!-- ============================================================
+             PROGRESSO DA HISTÓRIA (se o usuário tiver ficha)
+             ============================================================ -->
+            <section class="progress-section" id="progressSection" hidden>
+                <div class="progress-panel">
+                    <div class="progress-panel__header">
+                        <h3 class="progress-panel__title">Seu Progresso</h3>
+                        <span class="badge badge-gold" id="progressPercent">0%</span>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                    </div>
+
+                    <p class="progress-text" id="progressText">
+                        Você ainda não começou sua jornada.
+                    </p>
+
+                    <div class="progress-actions">
+                        <a href="jogar.html" class="btn btn-primary">Continuar Jornada</a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ============================================================
+     MODAL DE CAPÍTULO
+     ============================================================ -->
+    <div class="modal-overlay" id="chapterModal" aria-hidden="true">
+        <div class="modal-box modal-box--chapter">
+
+            <button class="modal-close" id="chapterClose" type="button" aria-label="Fechar">✕</button>
+
+            <!-- Cabeçalho do capítulo -->
+            <header class="chapter-header">
+                <div class="chapter-meta">
+                    <span class="chapter-number" id="chapterNumber">—</span>
+                    <span class="chapter-date" id="chapterDate">—</span>
+                </div>
+                <h2 class="chapter-title" id="chapterTitle">—</h2>
+                <p class="chapter-location" id="chapterLocation">—</p>
+            </header>
+
+            <!-- Imagem -->
+            <div class="chapter-image-wrapper">
+                <img src="" alt="" class="chapter-image" id="chapterImage">
+                <div class="chapter-image-overlay"></div>
+            </div>
+
+            <!-- Texto do capítulo -->
+            <div class="chapter-content" id="chapterContent">
+                <!-- Parágrafos entram via JS -->
+            </div>
+
+            <!-- Rodapé: personagens + status -->
+            <footer class="chapter-footer">
+
+                <div class="chapter-characters">
+                    <span class="chapter-characters__label">PERSONAGENS</span>
+                    <div class="chapter-characters__list" id="chapterCharacters">
+                        <!-- Chips entram via JS -->
+                    </div>
+                </div>
+
+                <div class="chapter-nav">
+                    <button class="btn btn-ghost" id="chapterPrev" type="button">◀ Anterior</button>
+                    <button class="btn btn-ghost" id="chapterNext" type="button">Próximo ▶</button>
+                </div>
+
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- ============================================================
+     TOAST
+     ============================================================ -->
+    <div class="toast" id="toast" hidden>
+        <span class="toast-text"></span>
+    </div>
+
+    <script src="data/historia.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/historia.js"></script>
+
+</body>
+
+</html>
