@@ -1,36 +1,39 @@
 ﻿/* ============================================================
-   CAÇADOR SOLITÁRIO — jogar.css (Estilos da Tela de Jogo)
+   CAÇADOR SOLITÁRIO — css/jogar.css
+   Viewport, Canvas Pixel Art, HUD e Dicas de Controle
    ============================================================ */
 
-/* 1. LAYOUT PRINCIPAL DA PÁGINA DE JOGO */
-body {
-    background-color: var(--bg-void, #040406);
-    color: var(--text-primary, #ffffff);
-    font-family: 'Pixelify Sans', 'Press Start 2P', monospace;
+/* ============================================================
+   1. ESTRUTURA PRINCIPAL DA TELA DO JOGO
+   ============================================================ */
+body.pagina-jogo {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin: 0;
-    padding: 0;
+    padding-top: var(--header-height);
     overflow: hidden;
-    user-select: none;
+    background-color: var(--bg-void);
 }
 
-/* 2. INVOLÓCRIO DO CANVAS (VIEWPORT 16:9 - 1024x576) */
+/* ============================================================
+   2. CONTAINER DO CANVAS (VIEWPORT 1024x576)
+   ============================================================ */
 .game-viewport {
     position: relative;
     width: 1024px;
     height: 576px;
-    border: 3px solid var(--accent-blood-hot, #E65B5B);
+    border: 3px solid var(--accent-blood-hot);
     box-shadow: 0 0 35px rgba(230, 91, 91, 0.35), inset 0 0 15px rgba(0, 0, 0, 0.85);
     background-color: #000000;
     overflow: hidden;
     border-radius: 2px;
 }
 
-/* 3. TELA DO CANVAS (PIXEL ART SEM BORRÕES) */
+/* ============================================================
+   3. TELA DO CANVAS (PIXEL ART SEM BORRÕES)
+   ============================================================ */
 #gameCanvas {
     width: 100%;
     height: 100%;
@@ -38,55 +41,62 @@ body {
     image-rendering: pixelated;
     image-rendering: crisp-edges;
     image-rendering: -moz-crisp-edges;
-    background: #000000;
 }
 
-/* 4. OVERLAY DA INTERFACE / HUD (CABEÇALHO INTERNO) */
+/* ============================================================
+   4. OVERLAY DA HUD / INTERFACE INTERNA
+   ============================================================ */
 .game-ui-overlay {
     position: absolute;
     top: 16px;
     left: 16px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: var(--space-3);
     background: rgba(8, 8, 12, 0.85);
     border: 1px solid rgba(230, 91, 91, 0.5);
-    padding: 8px 16px;
+    padding: var(--space-2) var(--space-4);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
     pointer-events: none;
     backdrop-filter: blur(2px);
 }
 
 .ui-region-tag {
+    font-family: var(--font-pixel);
     font-size: 11px;
-    color: var(--accent-gold, #ebb432);
+    color: var(--accent-gold);
     text-transform: uppercase;
     letter-spacing: 1.5px;
     text-shadow: 0 0 6px rgba(235, 180, 50, 0.4);
 }
 
-/* 5. DICAS DE CONTROLE (RODAPÉ DO CANVAS) */
+/* ============================================================
+   5. DICAS DE CONTROLE
+   ============================================================ */
 .controls-hint {
     position: absolute;
     bottom: 16px;
     right: 16px;
     background: rgba(8, 8, 12, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 8px 14px;
+    padding: var(--space-2) var(--space-4);
+    font-family: var(--font-pixel);
     font-size: 11px;
-    color: var(--text-secondary, #cccccc);
+    color: var(--text-secondary);
     pointer-events: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(2px);
 }
 
 .controls-key {
-    color: var(--accent-blood-hot, #E65B5B);
+    color: var(--accent-blood-hot);
     font-weight: bold;
     text-shadow: 0 0 4px rgba(230, 91, 91, 0.5);
 }
 
-/* 6. ADAPTAÇÃO RESPONSIVA PARA TELAS MENORES */
+/* ============================================================
+   6. ADAPTAÇÃO RESPONSIVA
+   ============================================================ */
 @media (max-width: 1080px) {
     .game-viewport {
         width: 95vw;
@@ -96,12 +106,6 @@ body {
 
 @media (max-width: 600px) {
     .controls-hint {
-        display: none; /* Esconde dicas longas em telas muito pequenas */
-    }
-    
-    .game-ui-overlay {
-        top: 8px;
-        left: 8px;
-        padding: 6px 10px;
+        display: none;
     }
 }

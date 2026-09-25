@@ -4,7 +4,7 @@
    ============================================================ */
 
 .pagina-mapa {
-   background: var(--bg-void, #08080a);
+   background: var(--bg-void);
    overflow-x: hidden;
 }
 
@@ -20,7 +20,9 @@
    align-items: center;
 }
 
-/* 1. ESTRUTURA LADO A LADO */
+/* ============================================================
+   1. ESTRUTURA LADO A LADO
+   ============================================================ */
 .map-main-layout {
    display: grid;
    grid-template-columns: 1fr 1fr;
@@ -37,42 +39,42 @@
 }
 
 .map-intro-title {
-   font-family: var(--font-pixel, sans-serif);
-   font-size: var(--fs-xl, 20px);
-   color: var(--text-primary, #ffffff);
-   margin-bottom: var(--space-4, 16px);
+   font-family: var(--font-pixel);
+   font-size: var(--fs-xl);
+   color: var(--text-primary);
+   margin-bottom: var(--space-4);
    line-height: 1.4;
    text-transform: uppercase;
 }
 
 .map-intro-paragraph {
-   font-family: var(--font-ui, sans-serif);
-   font-size: var(--fs-base, 14px);
+   font-family: var(--font-ui);
+   font-size: var(--fs-base);
    line-height: 1.8;
-   color: var(--text-secondary, #cccccc);
-   margin-bottom: var(--space-5, 24px);
+   color: var(--text-secondary);
+   margin-bottom: var(--space-5);
    text-align: justify;
 }
 
 .map-instruction-box {
-   background: var(--bg-surface, #121214);
-   border-left: 3px solid var(--accent-spirit, #41a6b5);
-   padding: 16px;
+   background: var(--bg-surface);
+   border-left: var(--border-heavy) solid var(--accent-spirit);
+   padding: var(--space-4);
 }
 
 .map-instruction-box .instruction-title {
    display: block;
-   font-family: var(--font-pixel, monospace);
+   font-family: var(--font-pixel);
    font-size: 10px;
-   color: var(--accent-spirit, #41a6b5);
-   margin-bottom: 6px;
+   color: var(--accent-spirit);
+   margin-bottom: var(--space-2);
    letter-spacing: 1px;
 }
 
 .map-instruction-box p {
-   font-family: var(--font-ui, sans-serif);
-   font-size: 13px;
-   color: var(--text-muted, #888888);
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   color: var(--text-muted);
    line-height: 1.5;
    margin: 0;
 }
@@ -130,7 +132,9 @@
    opacity: 0;
 }
 
-/* 2. OVERLAY E POPUP RETRÔ (SISTEMA DE MOLDURA DE JOGO) */
+/* ============================================================
+   2. OVERLAY E POPUP RETRÔ (SISTEMA DE MOLDURA DE JOGO)
+   ============================================================ */
 .modal-overlay {
    position: fixed;
    top: 0;
@@ -142,7 +146,7 @@
    justify-content: center;
    align-items: center;
    z-index: 9999;
-   padding: 16px;
+   padding: var(--space-4);
 }
 
 .modal-overlay[hidden] {
@@ -155,15 +159,16 @@
    max-width: 440px;
    aspect-ratio: 4 / 5;
    max-height: 90vh;
-   background: var(--bg-surface, #121214);
-   border: 3px solid var(--accent-blood-hot, #E65B5B);
-   box-shadow: 0 0 0 4px var(--bg-void, #08080a), 0 0 20px rgba(0, 0, 0, 0.9);
+   background: var(--bg-surface);
+   border: 3px solid var(--accent-blood-hot);
+   box-shadow: 0 0 0 4px var(--bg-void), 0 0 20px rgba(0, 0, 0, 0.9);
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-   padding: 16px;
+   padding: var(--space-4);
    box-sizing: border-box;
    animation: popInSteps 0.2s steps(4) forwards;
+   overflow-y: auto;
 }
 
 @keyframes popInSteps {
@@ -180,36 +185,37 @@
 
 .modal-close-x {
    position: absolute;
-   top: 8px;
-   right: 8px;
+   top: var(--space-2);
+   right: var(--space-2);
    width: 28px;
    height: 28px;
-   background: var(--bg-elevated, #1a1a1e);
-   border: 1px solid var(--accent-blood-hot, #E65B5B);
-   color: var(--text-primary, #ffffff);
-   font-family: var(--font-pixel, monospace);
+   background: var(--bg-elevated);
+   border: 1px solid var(--accent-blood-hot);
+   color: var(--text-primary);
+   font-family: var(--font-pixel);
    font-size: 14px;
    cursor: pointer;
    display: flex;
    align-items: center;
    justify-content: center;
    z-index: 10;
+   transition: background var(--t-fast) steps(2);
 }
 
 .modal-close-x:hover {
-   background: var(--accent-blood-hot, #E65B5B);
+   background: var(--accent-blood-hot);
 }
 
 .modal-header {
-   margin-bottom: 8px;
-   padding-right: 32px;
+   margin-bottom: var(--space-2);
+   padding-right: var(--space-6);
 }
 
 .modal-title {
-   font-family: var(--font-pixel, sans-serif);
+   font-family: var(--font-pixel);
    font-size: 15px;
-   color: var(--text-primary, #ffffff);
-   margin: 0 0 6px 0;
+   color: var(--text-primary);
+   margin: 0 0 var(--space-2) 0;
    line-height: 1.2;
    text-transform: uppercase;
 }
@@ -217,10 +223,10 @@
 .modal-badge {
    display: inline-block;
    padding: 2px 6px;
-   font-family: var(--font-pixel, monospace);
+   font-family: var(--font-pixel);
    font-size: 9px;
-   color: var(--accent-gold, #ebb432);
-   border: 1px solid var(--accent-gold, #ebb432);
+   color: var(--accent-gold);
+   border: 1px solid var(--accent-gold);
    background: rgba(235, 180, 50, 0.1);
    text-transform: uppercase;
 }
@@ -228,7 +234,7 @@
 .modal-body {
    display: flex;
    flex-direction: column;
-   gap: 10px;
+   gap: var(--space-3);
    flex: 1;
    justify-content: center;
 }
@@ -236,9 +242,9 @@
 .modal-image-wrapper {
    width: 100%;
    height: 160px;
-   border: 1px solid var(--bg-elevated, #2a2a30);
+   border: 1px solid var(--bg-elevated);
    overflow: hidden;
-   background: var(--bg-void, #000000);
+   background: var(--bg-void);
 }
 
 .modal-image {
@@ -250,10 +256,10 @@
 }
 
 .modal-desc {
-   font-family: var(--font-ui, sans-serif);
+   font-family: var(--font-ui);
    font-size: 12px;
    line-height: 1.4;
-   color: var(--text-secondary, #cccccc);
+   color: var(--text-secondary);
    margin: 0;
    display: -webkit-box;
    -webkit-line-clamp: 4;
@@ -264,16 +270,16 @@
 .modal-danger-box {
    display: flex;
    align-items: center;
-   gap: 8px;
-   background: var(--bg-void, #08080a);
-   padding: 6px 8px;
-   border: 1px solid var(--bg-elevated, #2a2a30);
+   gap: var(--space-2);
+   background: var(--bg-void);
+   padding: var(--space-2);
+   border: 1px solid var(--bg-elevated);
 }
 
 .modal-danger-label {
-   font-family: var(--font-pixel, monospace);
+   font-family: var(--font-pixel);
    font-size: 9px;
-   color: var(--state-danger, #e63946);
+   color: var(--state-danger);
 }
 
 .modal-danger-bar {
@@ -285,37 +291,38 @@
 .danger-seg {
    flex: 1;
    height: 8px;
-   background: var(--bg-elevated, #2a2a30);
+   background: var(--bg-elevated);
 }
 
 .danger-seg.filled {
-   background: var(--state-danger, #e63946);
-   box-shadow: 0 0 4px var(--state-danger, #e63946);
+   background: var(--state-danger);
+   box-shadow: 0 0 4px var(--state-danger);
 }
 
 .modal-danger-val {
-   font-family: var(--font-pixel, monospace);
+   font-family: var(--font-pixel);
    font-size: 9px;
-   color: var(--text-primary, #ffffff);
+   color: var(--text-primary);
 }
 
 .modal-footer {
    display: flex;
-   gap: 8px;
-   margin-top: 10px;
+   gap: var(--space-2);
+   margin-top: var(--space-3);
 }
 
 .btn-modal-primary {
    flex: 2;
-   background: var(--accent-blood-hot, #E65B5B);
+   background: var(--accent-blood-hot);
    color: #ffffff;
    border: none;
-   padding: 10px;
-   font-family: var(--font-pixel, monospace);
+   padding: var(--space-3);
+   font-family: var(--font-pixel);
    font-size: 10px;
    cursor: pointer;
    text-transform: uppercase;
    text-align: center;
+   transition: background var(--t-fast) steps(2);
 }
 
 .btn-modal-primary:hover {
@@ -324,15 +331,16 @@
 
 .btn-modal-secondary {
    flex: 1;
-   background: var(--bg-elevated, #1a1a1e);
-   color: var(--text-secondary, #cccccc);
-   border: 1px solid var(--bg-elevated, #2a2a30);
-   padding: 10px;
-   font-family: var(--font-pixel, monospace);
+   background: var(--bg-elevated);
+   color: var(--text-secondary);
+   border: 1px solid var(--bg-elevated);
+   padding: var(--space-3);
+   font-family: var(--font-pixel);
    font-size: 10px;
    cursor: pointer;
    text-transform: uppercase;
    text-align: center;
+   transition: all var(--t-fast) steps(2);
 }
 
 .btn-modal-secondary:hover {
@@ -340,11 +348,13 @@
    border-color: #ffffff;
 }
 
-/* ADAPTAÇÃO PARA DISPOSITIVOS MÓVEIS */
+/* ============================================================
+   3. RESPONSIVO
+   ============================================================ */
 @media (max-width: 900px) {
    .map-main-layout {
       grid-template-columns: 1fr;
-      gap: 24px;
+      gap: var(--space-5);
    }
 
    .map-intro-text {
@@ -358,5 +368,20 @@
    .region-modal {
       width: 85%;
       aspect-ratio: auto;
+   }
+}
+
+@media (max-width: 520px) {
+   .map-area {
+      padding-inline: var(--space-4) !important;
+   }
+
+   .map-intro-title {
+      font-size: var(--fs-lg);
+   }
+
+   .region-modal {
+      width: 95%;
+      padding: var(--space-3);
    }
 }

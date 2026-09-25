@@ -135,6 +135,18 @@
     color: var(--state-success) !important;
 }
 
+.text-blood {
+    color: var(--accent-blood-hot) !important;
+}
+
+.text-gold {
+    color: var(--accent-gold) !important;
+}
+
+.text-spirit {
+    color: var(--accent-spirit) !important;
+}
+
 /* ============================================================
    4. CLASSES UTILITÁRIAS DE ALINHAMENTO E ESPAÇAMENTO
    ============================================================ */
@@ -193,7 +205,6 @@
 /* ============================================================
    5. CURSORES PIXELADOS CUSTOMIZADOS (Opcional)
    ============================================================ */
-/* Caso decida usar imagens pequenas para o mouse */
 .cursor-sword {
     cursor: url('../assets/icons/ui/cursor-sword.png'), auto;
 }

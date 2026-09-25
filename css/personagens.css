@@ -3,7 +3,6 @@
    Bestiário: grid de Hashiras e Onis + modal de detalhes
    ============================================================ */
 
-
 /* ============================================================
    1. PÁGINA
    ============================================================ */
@@ -16,7 +15,6 @@
    padding-bottom: var(--space-9);
    min-height: 100vh;
 }
-
 
 /* ============================================================
    2. HERO / CABEÇALHO
@@ -40,7 +38,6 @@
    color: var(--text-secondary);
    max-width: 60ch;
 }
-
 
 /* ============================================================
    3. ABAS (Hashiras / Onis)
@@ -83,7 +80,6 @@
    outline-offset: 2px;
 }
 
-
 /* ============================================================
    4. GRID DE PERSONAGENS
    ============================================================ */
@@ -93,7 +89,6 @@
    gap: var(--space-5);
    animation: fade-in var(--t-slow) steps(6);
 }
-
 
 /* ============================================================
    5. CARD DE PERSONAGEM
@@ -114,7 +109,7 @@
 
 .character-card:hover,
 .character-card:focus-visible {
-   border-color: var(--accent-blood);
+   border-color: var(--accent-blood-hot);
    transform: translateY(-4px);
    box-shadow: 4px 8px 0 var(--bg-void);
 }
@@ -224,7 +219,6 @@
    background: var(--accent-violet);
 }
 
-
 /* ============================================================
    6. MODAL DE PERSONAGEM
    ============================================================ */
@@ -260,7 +254,7 @@
 }
 
 .character-modal__name {
-   font-size: var(--fs-xl);
+   font-size: var(--fs-2xl);
    letter-spacing: 1px;
    margin-bottom: var(--space-1);
 }
@@ -280,6 +274,41 @@
    padding: var(--space-4);
    background: var(--bg-elevated);
    border: var(--border-thin) solid var(--bg-void);
+}
+
+.stat {
+   display: grid;
+   grid-template-columns: 40px 1fr 32px;
+   align-items: center;
+   gap: var(--space-3);
+}
+
+.stat__abbr {
+   font-family: var(--font-pixel);
+   font-size: 10px;
+   letter-spacing: 1px;
+   color: var(--accent-spirit);
+}
+
+.stat__bar {
+   height: 8px;
+   background: var(--bg-void);
+   border: var(--border-thin) solid var(--state-disabled);
+   overflow: hidden;
+}
+
+.stat__fill {
+   height: 100%;
+   background: var(--accent-spirit);
+   transition: width var(--t-slow) steps(10);
+}
+
+.stat__value {
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
+   font-weight: 700;
+   color: var(--text-primary);
+   text-align: right;
 }
 
 .character-modal__section {
@@ -325,7 +354,6 @@
    color: var(--accent-blood-hot);
    font-size: 10px;
 }
-
 
 /* ============================================================
    7. RESPONSIVO

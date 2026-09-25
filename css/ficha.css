@@ -3,7 +3,6 @@
    Ficha de personagem: identidade, vitais, abas, painéis
    ============================================================ */
 
-
 /* ============================================================
    1. PÁGINA
    ============================================================ */
@@ -23,8 +22,8 @@
 }
 
 .sheet-title {
-   font-size: var(--fs-xl);
-   letter-spacing: 1px;
+   font-size: var(--fs-2xl);
+   letter-spacing: 2px;
    margin-bottom: var(--space-2);
    text-shadow: var(--shadow-pixel);
 }
@@ -34,7 +33,6 @@
    font-size: var(--fs-base);
    color: var(--text-secondary);
 }
-
 
 /* ============================================================
    2. EMPTY STATE
@@ -51,12 +49,12 @@
 
 .empty-icon {
    font-size: 40px;
-   color: var(--accent-blood);
+   color: var(--accent-blood-hot);
    margin-bottom: var(--space-4);
 }
 
 .empty-title {
-   font-size: var(--fs-lg);
+   font-size: var(--fs-xl);
    margin-bottom: var(--space-3);
 }
 
@@ -68,7 +66,6 @@
    margin-bottom: var(--space-6);
 }
 
-
 /* ============================================================
    3. FICHA — CONTAINER
    ============================================================ */
@@ -77,7 +74,6 @@
    flex-direction: column;
    gap: var(--space-5);
 }
-
 
 /* ============================================================
    4. IDENTIDADE
@@ -147,7 +143,7 @@
 }
 
 .sheet__name {
-   font-size: var(--fs-xl);
+   font-size: var(--fs-2xl);
    letter-spacing: 1px;
 }
 
@@ -220,7 +216,6 @@
    background: var(--xp-color);
    transition: width var(--t-slow) steps(10);
 }
-
 
 /* ============================================================
    5. VITAIS (HP / SAN / MOEDAS)
@@ -304,7 +299,6 @@
    background: var(--san-color);
 }
 
-
 /* ============================================================
    6. SUB-ABAS
    ============================================================ */
@@ -341,7 +335,6 @@
    background: var(--accent-spirit);
 }
 
-
 /* ============================================================
    7. PAINÉIS
    ============================================================ */
@@ -360,7 +353,7 @@
 }
 
 .panel-title {
-   font-size: var(--fs-lg);
+   font-size: var(--fs-xl);
    margin-bottom: var(--space-1);
 }
 
@@ -413,7 +406,6 @@
    font-weight: 700;
    color: var(--text-primary);
 }
-
 
 /* ============================================================
    8. ATRIBUTOS (lista com barras)
@@ -469,7 +461,6 @@
    transition: width var(--t-slow) steps(10);
 }
 
-
 /* ============================================================
    9. EQUIPAMENTOS
    ============================================================ */
@@ -517,7 +508,6 @@
    color: var(--text-primary);
 }
 
-
 /* ============================================================
    10. HISTÓRICO (capítulos)
    ============================================================ */
@@ -561,7 +551,6 @@
    font-size: var(--fs-xs);
    color: var(--text-muted);
 }
-
 
 /* ============================================================
    11. AÇÕES
@@ -643,7 +632,6 @@
    gap: var(--space-3);
 }
 
-
 /* ============================================================
    12. RESPONSIVO
    ============================================================ */
@@ -669,6 +657,10 @@
 
    .attributes-list {
       grid-template-columns: 1fr;
+   }
+
+   .sheet__title {
+      font-size: var(--fs-xl);
    }
 }
 
@@ -712,5 +704,9 @@
 
    .equipment-grid {
       grid-template-columns: 1fr 1fr;
+   }
+
+   .sheet__name {
+      font-size: var(--fs-xl);
    }
 }

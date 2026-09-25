@@ -3,7 +3,6 @@
    Crônica de Kagetsumi: introdução + timeline + modal de capítulo
    ============================================================ */
 
-
 /* ============================================================
    1. PÁGINA
    ============================================================ */
@@ -16,7 +15,6 @@
    padding-bottom: var(--space-9);
    min-height: 100vh;
 }
-
 
 /* ============================================================
    2. CABEÇALHO
@@ -39,7 +37,6 @@
    line-height: 1.6;
    color: var(--text-secondary);
 }
-
 
 /* ============================================================
    3. INTRODUÇÃO
@@ -71,7 +68,6 @@
 .intro-text strong {
    font-weight: 700;
 }
-
 
 /* ============================================================
    4. TÍTULO DE SEÇÃO
@@ -105,7 +101,6 @@
    height: 8px;
    background: var(--accent-gold);
 }
-
 
 /* ============================================================
    5. TIMELINE
@@ -147,9 +142,9 @@
    top: 6px;
    width: 16px;
    height: 16px;
-   background: var(--accent-blood);
+   background: var(--accent-blood-hot);
    border: var(--border-thin) solid var(--bg-void);
-   box-shadow: 0 0 0 2px var(--accent-blood);
+   box-shadow: 0 0 0 2px var(--accent-blood-hot);
    transition: width var(--t-fast) steps(2),
       height var(--t-fast) steps(2),
       left var(--t-fast) steps(2),
@@ -193,7 +188,7 @@
 
 .timeline-item:hover .timeline-item__card,
 .timeline-item:focus-visible .timeline-item__card {
-   border-color: var(--accent-blood);
+   border-color: var(--accent-blood-hot);
    transform: translateX(4px);
 }
 
@@ -247,7 +242,6 @@
    text-transform: uppercase;
    color: var(--accent-spirit);
 }
-
 
 /* ============================================================
    6. PROGRESSO DA HISTÓRIA
@@ -305,7 +299,6 @@
    display: flex;
    justify-content: flex-end;
 }
-
 
 /* ============================================================
    7. MODAL DE CAPÍTULO
@@ -430,7 +423,6 @@
    gap: var(--space-2);
 }
 
-
 /* ============================================================
    8. RESPONSIVO
    ============================================================ */
@@ -473,5 +465,17 @@
 
    .chapter-image-wrapper {
       height: 180px;
+   }
+
+   .chapter-header {
+      padding: var(--space-4);
+   }
+
+   .chapter-content {
+      padding: var(--space-4);
+   }
+
+   .chapter-footer {
+      padding: var(--space-4);
    }
 }

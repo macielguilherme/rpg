@@ -3,7 +3,6 @@
    Tela de título com menu principal e login
    ============================================================ */
 
-
 /* ============================================================
    1. PÁGINA
    ============================================================ */
@@ -12,7 +11,6 @@
    height: 100vh;
    position: relative;
 }
-
 
 /* ============================================================
    2. VÍDEO DE FUNDO
@@ -42,7 +40,6 @@
          rgba(5, 8, 12, 1) 100%);
 }
 
-/* Grade sutil sobre o vídeo */
 .home-bg-overlay::after {
    content: '';
    position: absolute;
@@ -54,9 +51,8 @@
    pointer-events: none;
 }
 
-
 /* ============================================================
-   3. TELA DE TÍTULO (área central)
+   3. TELA DE TÍTULO
    ============================================================ */
 .title-screen {
    position: relative;
@@ -69,9 +65,8 @@
    z-index: 5;
 }
 
-
 /* ============================================================
-   4. PAINEL CENTRAL (caixa do menu)
+   4. PAINEL CENTRAL
    ============================================================ */
 .title-panel {
    position: relative;
@@ -92,7 +87,6 @@
    animation: title-panel-in 600ms steps(12) 200ms both;
 }
 
-/* Cantos pixelados dourados */
 .title-panel::before,
 .title-panel::after {
    content: '';
@@ -131,7 +125,6 @@
    }
 }
 
-
 /* ============================================================
    5. LOGO / TÍTULO
    ============================================================ */
@@ -142,7 +135,7 @@
    gap: var(--space-1);
    text-align: center;
    line-height: 1;
-   font-family: var(--font-display);
+   font-family: var(--font-pixel);
    font-weight: 700;
    margin: 0;
 }
@@ -165,9 +158,8 @@
       0 0 30px rgba(224, 182, 90, 0.3);
 }
 
-
 /* ============================================================
-   6. ORNAMENTO (✦ entre título e menu)
+   6. ORNAMENTO
    ============================================================ */
 .title-ornament {
    color: var(--accent-blood-hot);
@@ -191,7 +183,6 @@
    }
 }
 
-
 /* ============================================================
    7. MENU PRINCIPAL
    ============================================================ */
@@ -210,7 +201,7 @@
    align-items: center;
    gap: var(--space-3);
    padding: var(--space-3) var(--space-5);
-   font-family: var(--font-display);
+   font-family: var(--font-pixel);
    font-size: 18px;
    font-weight: 600;
    letter-spacing: 3px;
@@ -223,10 +214,10 @@
    text-decoration: none;
    cursor: pointer;
    transition:
-      color var(--t-fast) steps(2),
-      background-color var(--t-fast) steps(2),
-      border-color var(--t-fast) steps(2),
-      padding-left var(--t-fast) steps(2);
+      color 0.2s steps(2),
+      background-color 0.2s steps(2),
+      border-color 0.2s steps(2),
+      padding-left 0.2s steps(2);
    user-select: none;
 }
 
@@ -238,21 +229,18 @@
    color: var(--accent-blood-hot);
    opacity: 0;
    transform: translateX(-8px);
-   transition:
-      opacity var(--t-fast) steps(2),
-      transform var(--t-fast) steps(2);
+   transition: opacity 0.2s steps(2), transform 0.2s steps(2);
 }
 
 .title-menu-item .menu-label {
    flex: 1;
 }
 
-/* Hover / ativo */
 .title-menu-item:hover,
 .title-menu-item.active {
    color: var(--text-primary);
    background: rgba(200, 60, 74, 0.08);
-   border-left-color: var(--accent-blood);
+   border-left-color: var(--accent-blood-hot);
    padding-left: calc(var(--space-5) - 3px);
 }
 
@@ -262,54 +250,8 @@
    transform: translateX(0);
 }
 
-/* Cursor piscando no item ativo (via teclado) */
-.title-menu-item.active .menu-cursor {
-   animation: menu-cursor-blink 1.1s steps(2) infinite;
-}
-
-@keyframes menu-cursor-blink {
-
-   0%,
-   55% {
-      opacity: 1;
-   }
-
-   56%,
-   100% {
-      opacity: 0.3;
-   }
-}
-
-/* Foco pelo teclado */
-.title-menu-item:focus-visible {
-   outline: var(--border-thin) solid var(--accent-spirit);
-   outline-offset: 2px;
-   color: var(--text-primary);
-   background: rgba(82, 214, 208, 0.06);
-   border-left-color: var(--accent-spirit);
-}
-
-
 /* ============================================================
-   8. RODAPÉ DO PAINEL
-   ============================================================ */
-.title-footer {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   width: 100%;
-   padding-top: var(--space-4);
-   border-top: var(--border-thin) solid var(--bg-elevated);
-   font-family: var(--font-pixel);
-   font-size: 8px;
-   letter-spacing: 3px;
-   text-transform: uppercase;
-   color: var(--text-muted);
-}
-
-
-/* ============================================================
-   9. MODAL DE LOGIN
+   8. MODAL DE LOGIN
    ============================================================ */
 .login-overlay {
    position: fixed;
@@ -326,17 +268,6 @@
 
 .login-overlay.active {
    display: flex;
-   animation: login-overlay-in var(--t-med) steps(4);
-}
-
-@keyframes login-overlay-in {
-   from {
-      opacity: 0;
-   }
-
-   to {
-      opacity: 1;
-   }
 }
 
 .login-modal {
@@ -345,51 +276,11 @@
    max-width: 440px;
    padding: var(--space-7) var(--space-6) var(--space-6);
    background: var(--bg-surface);
-   border: var(--border-thin) solid var(--accent-gold);
-   box-shadow: var(--shadow-pixel-lg), 0 0 60px rgba(224, 182, 90, 0.1);
-   animation: login-modal-in var(--t-slow) steps(8);
+   border: 1px solid var(--accent-gold);
+   box-shadow: 0 0 60px rgba(224, 182, 90, 0.1);
+   animation: modal-in var(--t-med) steps(4);
 }
 
-@keyframes login-modal-in {
-   from {
-      opacity: 0;
-      transform: translateY(16px);
-   }
-
-   to {
-      opacity: 1;
-      transform: translateY(0);
-   }
-}
-
-/* Cantos pixelados do modal */
-.login-modal::before,
-.login-modal::after {
-   content: '';
-   position: absolute;
-   width: 8px;
-   height: 8px;
-   background: var(--accent-gold);
-   pointer-events: none;
-}
-
-.login-modal::before {
-   top: -2px;
-   left: -2px;
-   box-shadow:
-      8px 0 0 var(--accent-gold),
-      0 8px 0 var(--accent-gold);
-}
-
-.login-modal::after {
-   right: -2px;
-   bottom: -2px;
-   box-shadow:
-      -8px 0 0 var(--accent-gold),
-      0 -8px 0 var(--accent-gold);
-}
-
-/* Botão de fechar */
 .login-close {
    position: absolute;
    top: var(--space-3);
@@ -399,114 +290,76 @@
    display: flex;
    align-items: center;
    justify-content: center;
-   background: transparent;
-   border: var(--border-thin) solid var(--bg-elevated);
+   font-family: var(--font-pixel);
+   font-size: 14px;
    color: var(--text-secondary);
-   font-size: var(--fs-sm);
+   background: var(--bg-elevated);
+   border: var(--border-thin) solid var(--state-disabled);
    cursor: pointer;
    transition: all var(--t-fast) steps(2);
 }
 
 .login-close:hover {
-   border-color: var(--accent-blood);
-   color: var(--accent-blood-hot);
-   background: rgba(200, 60, 74, 0.1);
+   color: var(--text-primary);
+   border-color: var(--accent-blood-hot);
 }
 
-/* Título do modal */
 .login-title {
-   font-family: var(--font-display);
+   font-family: var(--font-pixel);
    font-size: var(--fs-xl);
-   font-weight: 700;
-   letter-spacing: 3px;
-   color: var(--accent-gold);
    text-align: center;
-   margin-bottom: var(--space-1);
-   text-transform: uppercase;
-   text-shadow: 0 0 20px rgba(224, 182, 90, 0.3);
+   margin-bottom: var(--space-2);
+   color: var(--text-primary);
 }
 
 .login-subtitle {
-   font-family: var(--font-pixel);
-   font-size: 8px;
-   letter-spacing: 4px;
-   text-transform: uppercase;
-   color: var(--accent-blood-hot);
+   font-family: var(--font-ui);
+   font-size: var(--fs-sm);
    text-align: center;
+   color: var(--text-secondary);
    margin-bottom: var(--space-6);
 }
 
-/* Formulário */
 .login-form {
    display: flex;
    flex-direction: column;
-   gap: var(--space-4);
 }
 
-/* Links do modal */
 .login-links {
    margin-top: var(--space-5);
-   padding-top: var(--space-4);
-   border-top: var(--border-thin) solid var(--bg-elevated);
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   gap: var(--space-2);
-   font-family: var(--font-ui);
-   font-size: var(--fs-sm);
-   color: var(--text-secondary);
    text-align: center;
 }
 
 .login-links a {
-   color: var(--accent-spirit);
+   font-family: var(--font-ui);
+   font-size: var(--fs-xs);
+   color: var(--text-muted);
    transition: color var(--t-fast) steps(2);
 }
 
 .login-links a:hover {
-   color: var(--accent-blood-hot);
+   color: var(--accent-spirit);
 }
 
+/* ============================================================
+   9. TÍTULO FOOTER
+   ============================================================ */
+.title-footer {
+   display: flex;
+   justify-content: space-between;
+   width: 100%;
+   font-family: var(--font-pixel);
+   font-size: 8px;
+   letter-spacing: 1px;
+   color: var(--text-muted);
+   padding-top: var(--space-3);
+   border-top: var(--border-thin) solid var(--bg-elevated);
+}
 
 /* ============================================================
    10. RESPONSIVO
    ============================================================ */
-
-/* Tablet */
-@media (max-width: 900px) {
-   .title-panel {
-      padding: var(--space-7) var(--space-5);
-      gap: var(--space-5);
-   }
-
-   .title-logo-main {
-      font-size: 48px;
-      letter-spacing: 3px;
-   }
-
-   .title-logo-sub {
-      font-size: 34px;
-      letter-spacing: 6px;
-   }
-
-   .title-menu-item {
-      font-size: 16px;
-      padding: var(--space-3) var(--space-4);
-   }
-}
-
-/* Mobile */
 @media (max-width: 600px) {
-   .title-screen {
-      padding: var(--space-4) var(--space-3);
-   }
-
-   .title-panel {
-      padding: var(--space-6) var(--space-4);
-      gap: var(--space-4);
-      max-width: 100%;
-   }
-
    .title-logo-main {
       font-size: 36px;
       letter-spacing: 2px;
@@ -517,49 +370,17 @@
       letter-spacing: 4px;
    }
 
-   .title-ornament {
-      font-size: 14px;
-      letter-spacing: 8px;
+   .title-panel {
+      padding: var(--space-6) var(--space-5);
    }
 
    .title-menu-item {
       font-size: 15px;
       letter-spacing: 2px;
-      padding: var(--space-3) var(--space-4);
    }
 
-   .title-menu-item .menu-cursor {
-      width: 12px;
-      font-size: 10px;
-   }
-
-   .title-footer {
-      font-size: 7px;
-      letter-spacing: 2px;
-   }
-
-   .login-modal {
-      padding: var(--space-6) var(--space-4) var(--space-5);
-   }
-
-   .login-title {
-      font-size: var(--fs-lg);
-      letter-spacing: 2px;
-   }
-}
-
-/* Mobile muito pequeno */
-@media (max-width: 380px) {
-   .title-logo-main {
-      font-size: 30px;
-   }
-
-   .title-logo-sub {
-      font-size: 22px;
-   }
-
-   .title-menu-item {
+   .title-ornament {
       font-size: 14px;
-      padding: var(--space-2) var(--space-3);
+      letter-spacing: 8px;
    }
 }
